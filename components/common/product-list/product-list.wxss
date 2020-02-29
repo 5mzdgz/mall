@@ -1,0 +1,46 @@
+/* components/common/product/product.wxss */
+
+.product-item {
+  margin: 0 20rpx;
+  padding: 40rpx 0;
+  border-bottom: 1px solid #eee;
+}
+
+.product-item:nth-child(1) {
+  border-top: 1px solid #eee;
+}
+
+.img-box {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
+  margin-right: 50rpx;
+  background: #ddd;
+}
+
+.img-box image {
+  width: 100%;
+  height: 100%;
+}
+
+.product-box {
+  width: 65%;
+}
+
+.product-name {
+  font-size: 30rpx;
+}
+
+.address {
+  font-size: 26rpx;
+  color: #aaa;
+}
+
+.price-box {
+  font-size: 30rpx;
+}
+
+.price {
+  color: red;
+  margin-right: 20rpx;
+}

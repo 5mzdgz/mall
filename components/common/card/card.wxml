@@ -1,0 +1,18 @@
+<!--components/common/card/card.wxml-->
+<view class="card">
+  <view class="img-box">
+    <image src="{{cardData.userHeadImg}}"></image>
+  </view>
+  <view class="text ellipsis_3">{{cardData.contentText}}</view>
+  <view class="cell flex-r">
+    <view class="left-cell flex-r">
+      <image src="/assets/icons/home.png"></image>
+      <text class="user-name ellipsis_1">{{cardData.userName}}</text>
+      <text class="time">{{cardData.releaseTime}}</text>
+    </view>
+    <view class="right-cell">
+      <text class="iconfont {{cardData.leftIcon}}"></text>
+      <text class="count">{{cardData.visitors}}</text>
+    </view>
+  </view>
+</view>

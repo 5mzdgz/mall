@@ -1,0 +1,32 @@
+.swiper-box {
+  position: relative;
+}
+
+.item-image {
+  width: 100%;
+  height: 100%;
+  background: primary;
+}
+
+.dots{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.dot{
+  margin: 0 8rpx;
+  width: 14rpx;
+  height: 14rpx;
+  background: #bbb;
+  border-radius: 8rpx;
+  transition: all .6s;
+}
+
+.selected {
+  width: 38rpx;
+  background: #fff;
+}

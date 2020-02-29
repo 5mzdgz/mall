@@ -1,0 +1,19 @@
+/* components/common/grid/grid.wxss */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+}
+
+.grid-item {
+  width: 25%;
+  padding: 15rpx 0;
+}
+
+.grid-item .iconfont {
+  font-size: 50rpx;
+}
+
+.grid-item .title {
+  font-size: 26rpx;
+}

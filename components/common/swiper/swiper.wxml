@@ -1,0 +1,23 @@
+<view class="swiper-box">
+  <swiper style='height: {{swiperData.height}}rpx'
+    autoplay="{{swiperData.autoplay}}" 
+    interval="{{swiperData.interval}}"
+    duration="{{swiperData.duration}}"
+    circular="{{swiperData.circular}}"
+    vertical="{{swiperData.vertical}}"
+    bindchange="{{swiperData.onChange}}"
+    >
+    <block wx:for="{{swiperData.swiperArr}}" wx:key="{{index}}">
+      <swiper-item class="banner-item" data-item="{{item}}">
+        <image class="item-image" wx:if="{{item.imgUrl}}" mode='' src="{{item.imgUrl}}" />
+        <text wx:if="{{item.text}}">{{item.text}}</text>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="dots" wx:if="{{swiperData.indicatorDots}}">
+    <block wx:for="{{swiperData.swiperArr}}" wx:key="index">
+      <view class="dot {{index === swiperData.current ? 'selected' : ''}}"></view>
+    </block>
+  </view>
+</view>

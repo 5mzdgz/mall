@@ -1,0 +1,7 @@
+<!--components/common/grid/grid.wxml-->
+<view class="grid">
+  <view class="grid-item flex-c" wx:for="{{gridArr}}" wx:key="index">
+    <text class="iconfont {{item.icon}}"></text>
+    <text class="title">{{item.title}}</text>
+  </view>
+</view>

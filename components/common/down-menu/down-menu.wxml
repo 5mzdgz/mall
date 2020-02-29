@@ -1,0 +1,12 @@
+<!--components/common/menu/menu.wxml-->
+<view class="menu-box">
+  <view class="selected-box flex-r">
+    <text class="selected-item">贵港</text>
+    <text class="iconfont icon-xiangyou"></text>
+  </view>
+  <!-- <view class="item-box {{!seleted?'slidup':'slidown'}}">
+    <view class="item">南宁</view>
+    <view class="item">南宁</view>
+    <view class="item">南宁</view>
+  </view> -->
+</view>

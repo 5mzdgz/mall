@@ -1,0 +1,13 @@
+<!--components/common/sticky/sticky.wxml-->
+<view class="sticky-box">
+  <view class="navbar-wrap">
+    <view class="column {{isFixedTop?'fixed':''}}" style="top:{{navbarInitTop}}px">
+      <view class="block {{index === seleted - 1?'active':''}}" wx:for="{{navArr}}" data-item="{{item}}" catchtap="selectedNav" wx:key="index">{{item.navName}}<text class="iconfont {{item.icon}}"></text></view>
+    </view>
+    <!-- 用于吸顶后 占位用的 -->
+    <view class="column" wx:if="{{isFixedTop}}"></view>
+    <view class="pull-box {{seleted > 0 ? 'slidown':'slidup'}}">
+      <view>全部</view>
+    </view>
+  </view>
+</view>

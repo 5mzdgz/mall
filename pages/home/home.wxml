@@ -1,0 +1,22 @@
+<!--pages/home/home.wxml-->
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{navTitle}}"
+>
+</navigation>
+
+<view class="container">
+  <view class="swiper-box">
+    <v-swiper swiperData="{{swiperData}}"></v-swiper>
+  </view>
+  <view class="input-box flex-r">
+    <down-menu></down-menu>
+    <input placeholder='请输入搜索关键字'></input>
+  </view>
+
+  <view class="position-box">
+    <v-cell cellData="{{consultation.cellData}}"></v-cell>
+    <image-card></image-card>
+  </view>
+</view>

@@ -1,0 +1,13 @@
+<!--components/common/cell/cell.wxml-->
+<view class="item-box flex-r back-fff fs-26" data-pageurl="{{pageUrl}}" bindtap="goClickUrl">
+  <view class="left-box flex-r">
+    <!-- <image wx:if="{{iconUrl}}" src="{{iconUrl}}" /> -->
+    <text class="iconfont {{cellData.leftIcon}}"></text>
+    <text class="left-name {{cellData.leftNameBlod?cellData.leftNameBlod:''}}">{{cellData.leftName}}</text>
+    <text class="left-sub">{{cellData.leftSub}}</text>
+  </view>
+  <view class="right-box">
+    <text class="sub" wx:if="{{cellData.rightSub}}">{{cellData.rightSub}}</text>
+    <text class="iconfont {{cellData.rightIcon}}"></text>
+  </view>
+</view>

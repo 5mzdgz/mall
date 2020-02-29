@@ -1,0 +1,44 @@
+/* components/common/cell/cell.wxss */
+.item-box {
+  justify-content: space-between;
+  padding: 25rpx 30rpx;
+}
+
+.boder-bottom {
+  border-bottom: 1px solid #ccc;
+}
+
+.boder-top {
+  border-top: 1px solid #ccc;
+}
+
+.item-box .icon-xiangyou {
+  font-size: 26rpx;
+  color: #555;
+}
+
+.item-box image {
+  width: 45rpx;
+  height: 45rpx;
+  margin-right: 20rpx;
+}
+
+.left-name {
+  font-size: 30rpx;
+}
+
+.blod {
+  font-weight: bold;
+}
+
+.left-sub {
+  font-size: 22rpx;
+  color: #aaa;
+  margin-left: 20rpx;
+}
+
+.right-box .sub {
+  margin-right: 10rpx;
+  font-size: 26rpx;
+  color: #555;
+}

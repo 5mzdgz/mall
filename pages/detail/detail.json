@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "navigation": "/components/common/navigation/navigation",
+    "v-swiper": "/components/common/swiper/swiper"
+  }
+}

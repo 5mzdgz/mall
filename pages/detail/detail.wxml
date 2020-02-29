@@ -1,0 +1,14 @@
+<!--pages/detail/detail.wxml-->
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{navTitle}}"
+>
+</navigation>
+
+<view class="container">
+  <view class="swiper-box">
+    <v-swiper swiperData="{{swiperData}}"></v-swiper>
+  </view>
+  
+</view>

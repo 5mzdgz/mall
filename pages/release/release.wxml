@@ -1,0 +1,11 @@
+<!--pages/release/release.wxml-->
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{navTitle}}"
+>
+</navigation>
+
+<view class="container">
+  
+</view>

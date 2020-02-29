@@ -1,6 +1,13 @@
 {
   "pages":[
     "pages/home/home",
+    "pages/detail/detail",
+    "pages/advertisement/advertisement",
+    "pages/collection/collection",
+    "pages/release/release",
+    "pages/record/record",
+    "pages/login/login",
+    "pages/login/phone/phone",
     "pages/my/my"
   ],
   "window":{

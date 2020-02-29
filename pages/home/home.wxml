@@ -15,8 +15,16 @@ title="{{navTitle}}"
     <input placeholder='请输入搜索关键字'></input>
   </view>
 
+  <view class="grid-box">
+    <v-grid gridArr="{{gridArr}}"></v-grid>
+  </view>
+
   <view class="position-box">
     <v-cell cellData="{{consultation.cellData}}"></v-cell>
-    <image-card></image-card>
+    <image-card cardData="{{consultation.cardData}}"></image-card>
+  </view>
+  <view class="position-box">
+    <v-cell cellData="{{recommend.cellData}}"></v-cell>
+    <image-card cardData="{{recommend.cardData}}"></image-card>
   </view>
 </view>

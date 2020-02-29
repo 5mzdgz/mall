@@ -31,6 +31,27 @@ Page({
       }
       ],
     },
+    gridArr: [{
+      id: 1,
+      title: '园区管网',
+      icon: 'icon-fenleifill'
+    },
+    {
+      id: 2,
+      title: '园区管网',
+      icon: 'icon-fenleifill'
+    },
+    {
+      id: 3,
+      title: '园区管网',
+      icon: 'icon-fenleifill'
+    },
+    {
+      id: 4,
+      title: '园区管网',
+      icon: 'icon-fenleifill'
+    }
+    ],
     consultation: {
       cellData: {
         leftIcon: '',
@@ -41,6 +62,75 @@ Page({
         rightSub: '',
         pageUrl: ''
       },
+      cardData: {
+        type: 1,
+        height: 250,
+        imageUrl: '/images/tab/home.png',
+        title: '金难大道南',
+        subArr: ['路口', '高杆'],
+        attrArr: [
+          {
+            label: '高',
+            number: 80,
+            unit: 'm'
+          },
+          {
+            label: '长',
+            number: 80,
+            unit: 'm'
+          },
+          {
+            label: '宽',
+            number: 80,
+            unit: 'm'
+          }
+        ],
+        rightText: '咨询',
+        icon: 'icon-xiangyou',
+        price: 2000,
+        unit: '元/月',
+        videoUrl: null,
+      }
+    },
+    recommend: {
+      cellData: {
+        leftIcon: '',
+        rightIcon: '',
+        leftName: '咨询',
+        leftNameBlod: 'blod',
+        leftSub: '',
+        rightSub: '',
+        pageUrl: ''
+      },
+      cardData: {
+        type: 1,
+        height: 350,
+        imageUrl: 'https://img.laoliangli.com/label/common/home_icon.png',
+        title: '金难大道南',
+        subArr: ['路口', '高杆'],
+        attrArr: [
+          {
+            label: '高',
+            number: 80,
+            unit: 'm'
+          },
+          {
+            label: '长',
+            number: 80,
+            unit: 'm'
+          },
+          {
+            label: '宽',
+            number: 80,
+            unit: 'm'
+          }
+        ],
+        rightText: '咨询',
+        icon: 'icon-xiangyou',
+        price: 2000,
+        unit: '元/月',
+        videoUrl: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+      }
     }
   },
 

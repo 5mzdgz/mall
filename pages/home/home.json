@@ -4,6 +4,7 @@
     "navigation": "/components/common/navigation/navigation",
     "v-swiper": "/components/common/swiper/swiper",
     "down-menu": "/components/common/down-menu/down-menu",
+    "v-grid": "/components/common/grid/grid",
     "v-cell": "/components/common/cell/cell",
     "image-card": "/components/common/image-card/image-card"
   }

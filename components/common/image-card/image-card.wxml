@@ -1,36 +1,29 @@
 <!--components/common/image-card/image-card.wxml-->
 <view class="image-card">
-  <view class="image-box" style="height: 200rpx;">
-    <image src="/images/tab/home.png"></image>
+  <view class="image-box" style="height: {{cardData.height}}rpx;">
+    <image wx:if="{{!cardData.videoUrl}}" src="{{cardData.imageUrl}}"></image>
+    <video src="{{cardData.videoUrl}}" poster='{{cardData.imageUrl}}' enable-danmu="{{false}}" danmu-btn="{{false}}" controls object-fit="cover" bindplay='bindplay' bindpause='bindpause' bindended='bindend' bindtimeupdate="bindtimeupdate" wx:else></video>
   </view>
   <view class="content flex-r">
     <view class="left-box">
       <view class="title-box flex-r">
-        <view class="title">金港大道南</view>
-        <view class="sub">金港大道南</view>
+        <view class="title">{{cardData.title}}</view>
+        <view class="sub" wx:for="{{cardData.subArr}}" wx:for-item="subItem" wx:key="unique">{{subItem}}</view>
       </view>
       <view class="attribute flex-r">
-        <view class="attr-item">
-          <text class="label">高度</text>
-          <text class="text">80米</text>
-        </view>
-        <view class="attr-item">
-          <text class="label">高度</text>
-          <text class="text">80米</text>
-        </view>
-        <view class="attr-item">
-          <text class="label">高度</text>
-          <text class="text">80米</text>
+        <view class="attr-item" wx:for="{{cardData.attrArr}}" wx:for-item="attrItem" wx:key="unique">
+          <text class="label">{{attrItem.label}}</text>
+          <text class="text">{{attrItem.number}}{{attrItem.unit}}</text>
         </view>
       </view>
       <view class="price-box">
-        <text class="price">2000</text>
-        <text class="unit">元/月</text>
+        <text class="price">{{cardData.price}}</text>
+        <text class="unit">{{cardData.unit}}</text>
       </view>
     </view>
     <view class="right-box">
-      <view class="icon"><text class="iconfont icon-xiangyou"></text></view>
-      <view class="iconname">咨询</view>
+      <view class="icon"><text class="iconfont {{cardData.icon}}"></text></view>
+      <view class="iconname">{{cardData.rightText}}</view>
     </view>
   </view>
 </view>

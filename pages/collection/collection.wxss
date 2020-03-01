@@ -1,1 +1,4 @@
 /* pages/Collection/Collection.wxss */
+.ad-item {
+  margin: 30rpx 0;
+}

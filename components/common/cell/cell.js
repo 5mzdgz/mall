@@ -24,6 +24,7 @@ Component({
    */
   methods: {
     goClickUrl(e) {
+      console.log(e)
       const pageurl = e.currentTarget.dataset.pageurl;
       if (pageurl) {
         wx.navigateTo({

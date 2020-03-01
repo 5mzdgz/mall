@@ -5,7 +5,7 @@
 
 .selected-box {
   font-size: 26rpx;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   border-radius: 10rpx;
   justify-content: space-between;
   width: 100rpx;

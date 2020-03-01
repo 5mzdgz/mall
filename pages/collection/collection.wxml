@@ -7,5 +7,13 @@ title="{{navTitle}}"
 </navigation>
 
 <view class="container">
-  
+  <view class="ad-item">
+    <image-card class="item-image-card" cardData="{{cardData}}"></image-card>
+  </view>
+  <view class="ad-item">
+    <image-card class="item-image-card" cardData="{{cardData}}"></image-card>
+  </view>
+  <view class="ad-item">
+    <image-card class="item-image-card" cardData="{{cardData}}"></image-card>
+  </view>
 </view>

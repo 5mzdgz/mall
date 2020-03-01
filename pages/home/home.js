@@ -19,37 +19,45 @@ Page({
       onChange: 'swiperBannerChange', //change事件名称
       swiperArr: [{
         id: 1,
-        imgUrl: '/images/tab/home.png'
+        imgUrl: '/images/common/ad_banner1.png'
       },
       {
-        id: 1,
-        imgUrl: '/images/tab/selected_home.png'
+        id: 2,
+        imgUrl: '/images/common/ad_banner2.png'
       },
       {
-        id: 1,
-        imgUrl: '/images/tab/home.png'
+        id: 3,
+        imgUrl: '/images/common/ad_banner3.png'
+      },
+      {
+        id: 4,
+        imgUrl: '/images/common/ad_banner4.png'
       }
       ],
     },
     gridArr: [{
       id: 1,
-      title: '园区管网',
-      icon: 'icon-fenleifill'
+      title: '广告位',
+      icon: 'icon-ico_AD',
+      iconBackground: '#A40959'
     },
     {
       id: 2,
-      title: '园区管网',
-      icon: 'icon-fenleifill'
+      title: '媒体资讯',
+      icon: 'icon-navzixunzhongxin',
+      iconBackground: '#4E89FC'
     },
     {
       id: 3,
-      title: '园区管网',
-      icon: 'icon-fenleifill'
+      title: '物品置换',
+      icon: 'icon-qiehuanmoshi',
+      iconBackground: '#31DF76'
     },
     {
       id: 4,
-      title: '园区管网',
-      icon: 'icon-fenleifill'
+      title: '扫一扫',
+      icon: 'icon-saoyisao',
+      iconBackground: '#872CC3'
     }
     ],
     consultation: {
@@ -65,7 +73,7 @@ Page({
       cardData: {
         type: 1,
         height: 250,
-        imageUrl: '/images/tab/home.png',
+        imageUrl: '/images/common/ad_banner2.png',
         title: '金难大道南',
         subArr: ['路口', '高杆'],
         attrArr: [
@@ -86,7 +94,7 @@ Page({
           }
         ],
         rightText: '咨询',
-        icon: 'icon-xiangyou',
+        icon: 'icon-zixun',
         price: 2000,
         unit: '元/月',
         videoUrl: null,
@@ -104,8 +112,8 @@ Page({
       },
       cardData: {
         type: 1,
-        height: 350,
-        imageUrl: 'https://img.laoliangli.com/label/common/home_icon.png',
+        height: 324,
+        imageUrl: '/images/common/ad_banner2.png',
         title: '金难大道南',
         subArr: ['路口', '高杆'],
         attrArr: [
@@ -126,7 +134,7 @@ Page({
           }
         ],
         rightText: '咨询',
-        icon: 'icon-xiangyou',
+        icon: 'icon-dianhuazixun',
         price: 2000,
         unit: '元/月',
         videoUrl: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
@@ -139,6 +147,15 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+
+  /**
+   * 搜索广告位
+   */
+  goadverTap: function() {
+    wx.navigateTo({
+      url: '../advertisement/advertisement',
+    })
   },
 
   /**

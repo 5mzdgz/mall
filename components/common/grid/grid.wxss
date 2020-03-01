@@ -17,3 +17,10 @@
 .grid-item .title {
   font-size: 26rpx;
 }
+
+.icon-box {
+  padding: 20rpx;
+  border-radius: 20rpx;
+  color: #fff;
+  margin-bottom: 10rpx;
+}

@@ -1,0 +1,29 @@
+<!--components/detail/goods/goods.wxml-->
+<view class="goods">
+  <view class="left-box">
+    <view class="title">中山路北路</view>
+    <view class="item-box">
+      <view class="sub-name">LED电子屏</view>
+      <view class="sub-name">电子屏</view>
+      <view class="sub-name">子屏</view>
+      <view class="sub-name">子屏</view>
+      <view class="sub-name">子屏</view>
+    </view>
+  </view>
+  <view class="right-box">
+    <view class="count-box flex-r">
+      <view class="browse">
+        <text class="iconfont icon-xiangyou"></text>
+        <text class="count">88888</text>
+      </view>
+      <view class="browse">
+        <text class="iconfont icon-xiangyou"></text>
+        <text class="count">88888</text>
+      </view>
+    </view>
+    <view class="price-box">
+      <text class="price">2500</text>
+      <text class="unit">元/月</text>
+    </view>
+  </view>
+</view>

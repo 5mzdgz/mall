@@ -1,0 +1,12 @@
+<!--pages/about/about.wxml-->
+<navigation id='Navigation' show-icon='{{showIcon}}' title="{{navTitle}}">
+</navigation>
+
+<view class="container">
+  <view class="content-box">
+    <image class="item-image" mode='Fixed' src="/images/common/ad_banner2.png" />
+    <view class="info">佰家购房平台是由广西贵港佰家置业有限公司全资投资建设的网络购房服务平台，贵港佰家置业有限公司是一家专注于贵港地区房地产市场，以营销策划、楼盘代理、设计推广、渠道整合为业务的企业。目前公司服务的房地产企业含括南宁、贵港、桂平、平南等城市，团队以专业的作战能力、丰富的经验为企业提供优质专业服务的同时，更为广大购房群体提供专业购房指导介绍和贴心的看房服务。</view>
+    <view class="address">公司地址：贵港市港北区天悦华府西门二楼商铺（整层）</view>
+    <view class="contact">公司电话：0775-4582880</view>
+  </view>
+</view>

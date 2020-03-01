@@ -6,7 +6,7 @@
     </view>
     <!-- 用于吸顶后 占位用的 -->
     <view class="column" wx:if="{{isFixedTop}}"></view>
-    <view class="pull-box {{seleted > 0 ? 'slidown':'slidup'}}">
+    <view class="pull-box {{seleted > 0 ? 'slidown':'slidup'}}" wx:if="{{isDown}}">
       <view>全部</view>
     </view>
   </view>

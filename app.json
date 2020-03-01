@@ -8,7 +8,8 @@
     "pages/record/record",
     "pages/login/login",
     "pages/login/phone/phone",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/about/about"
   ],
   "window":{
     "backgroundTextStyle":"light",

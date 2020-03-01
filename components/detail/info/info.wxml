@@ -1,0 +1,24 @@
+<!--components/detail/info/info.wxml-->
+<view class="info-box">
+  <view class="info-item">
+    <view class="label-title">规格</view>
+    <text class="attrs">
+      <text class="label">高</text>
+      <text class="count">300</text>
+      <text class="unit">m</text>
+    </text>
+    <text class="attrs">
+      <text class="label">宽</text>
+      <text class="count">300</text>
+      <text class="unit">m</text>
+    </text>
+  </view>
+  <view class="info-item">
+    <view class="label-title">规格规格</view>
+    <view class="info-content">规格规格规格规格规格规格规格规格</view>
+  </view>
+  <view class="info-item">
+    <view class="label-title">规格</view>
+    <view class="info-content">规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格</view>
+  </view>
+</view>

@@ -1,7 +1,9 @@
 <!--components/common/grid/grid.wxml-->
 <view class="grid">
-  <view class="grid-item flex-c" wx:for="{{gridArr}}" wx:key="index">
-    <text class="iconfont {{item.icon}}"></text>
+  <view class="grid-item flex-c" wx:for="{{gridArr}}" wx:key="index" data-index="{{index}}" bindtap="selectedItemTap">
+    <view class="icon-box" style="background: {{item.iconBackground}};">
+      <text class="iconfont {{item.icon}}"></text>
+    </view>
     <text class="title">{{item.title}}</text>
   </view>
 </view>

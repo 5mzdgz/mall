@@ -1,0 +1,36 @@
+/* components/detail/tabbar/tabbar.wxss */
+.tabbar-box {
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  overflow: hidden;
+  width: 100%;
+  box-shadow: 0 -5rpx 10rpx rgba(0, 0, 0, 0.16);
+}
+
+.collection {
+  flex: 1;
+  text-align: center;
+}
+
+.collection .title {
+  font-size: 26rpx;
+}
+
+.phone, .wx-contact {
+  flex: 2;
+  text-align: center;
+  background: #4E89FC;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #fff;
+}
+
+.phone {
+  border-right: 1px solid #fff;
+}
+
+.phone text, .wx-contact text{
+  margin-right: 10rpx;
+}

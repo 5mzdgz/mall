@@ -1,0 +1,11 @@
+<!--components/detail/tabbar/tabbar.wxml-->
+<view class="tabbar-box flex-r">
+  <view class="collection flex-c">
+    <text class="iconfont icon-iconfontxihuan"></text>
+    <text class="title">收藏</text>
+  </view>
+  <view class="phone">
+    <text class="iconfont icon-dianhua1"></text>电话咨询</view>
+  <view class="wx-contact">
+    <text class="iconfont icon-weixin"></text>微信客服</view>
+</view>

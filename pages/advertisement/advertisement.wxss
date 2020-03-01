@@ -1,1 +1,135 @@
 /* pages/advertisement/advertisement.wxss */
+page {
+  background: #f6f6f6;
+}
+
+.content-top {
+  position: fixed;
+  z-index: 9999;
+  overflow: hidden;
+  width: 100%;
+  background: #fff;
+}
+
+.input-box {
+  margin: 0 5%;
+  background-color: rgb(238, 238, 238);
+  height: 90rpx;
+  border-radius: 45rpx;
+  padding: 0 5%;
+  margin-top: 20rpx;
+}
+
+.input-box .icon-sousuo {
+  font-size: 30rpx;
+}
+
+.input-box input {
+  width: 100%;
+  text-align: left;
+  font-size: 26rpx;
+  margin-left: 15rpx;
+  height: 90rpx;
+}
+
+.project-item {
+  justify-content: space-around;
+  padding: 20rpx 40rpx;
+  font-size: 26rpx;
+}
+
+.project-box {
+  position: relative;
+}
+
+.project-box .project {
+  justify-content: center;
+  flex: 1;
+  height: 40rpx;
+}
+
+.triangle {
+  transform: rotate(180deg);
+  width: 0;
+  height: 0;
+  border: 10rpx solid #ccc;
+  border-color: transparent transparent #ccc;
+  margin-top: 15rpx;
+  margin-left: 15rpx;
+}
+
+.selected_project {
+  border: 10rpx solid rgb(240, 133, 25);
+  border-color: transparent transparent rgb(240, 133, 25);
+}
+
+.content-box {
+  position: absolute;
+  padding: 0 80rpx;
+  z-index: 999;
+  background: #fff;
+  width: 590rpx;
+  font-size: 28rpx;
+}
+
+.content-box .content-item {
+  padding: 10rpx 0;
+}
+
+.content-box .content-checked {
+  background: #6987ac;
+}
+
+.slidown {
+  display: block;
+  animation: slidown .5s ease-in both;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+
+/*筛选项隐藏 显示动画 start*/
+@keyframes slidown {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: 400rpx;
+  }
+}
+
+.slidup {
+  display: block;
+  animation: slidup .1s ease-in both;
+  overflow: hidden;
+}
+
+@keyframes slidup {
+  from {
+    height: 400rpx;
+  }
+
+  to {
+    height: 0rpx;
+  }
+}
+
+.popu {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 340rpx;
+  z-index: 9;
+  background: #000;
+  opacity: 0.2;
+}
+
+.house-box {
+  padding: 30rpx 45rpx;
+}
+
+.ad-item {
+  margin: 30rpx 0;
+}

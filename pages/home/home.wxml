@@ -10,20 +10,19 @@ title="{{navTitle}}"
   <view class="swiper-box">
     <v-swiper swiperData="{{swiperData}}"></v-swiper>
   </view>
-  <view class="input-box flex-r">
+  <view class="input-box flex-r" bindtap="goadverTap">
     <down-menu></down-menu>
     <input placeholder='请输入搜索关键字'></input>
   </view>
 
-  <view class="grid-box">
+  <view class="nav-grid-box">
     <v-grid gridArr="{{gridArr}}"></v-grid>
   </view>
-
-  <view class="position-box">
+  <view class="grid-box">
     <v-cell cellData="{{consultation.cellData}}"></v-cell>
     <image-card cardData="{{consultation.cardData}}"></image-card>
   </view>
-  <view class="position-box">
+  <view class="grid-box">
     <v-cell cellData="{{recommend.cellData}}"></v-cell>
     <image-card cardData="{{recommend.cardData}}"></image-card>
   </view>

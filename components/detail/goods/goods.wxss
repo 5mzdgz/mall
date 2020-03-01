@@ -1,0 +1,48 @@
+/* components/detail/goods/goods.wxss */
+.goods {
+  display: flex;
+  flex-direction: row;
+  padding: 15rpx 30rpx;
+  font-size: 30rpx;
+  margin-bottom: 30rpx;
+  background: #fff;
+}
+
+.left-box, right-box {
+  flex: 1;
+}
+
+.left-box .title {
+  width: 350rpx;
+  font-weight: bold;
+}
+
+.item-box {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10rpx;
+}
+
+.item-box .sub-name {
+  font-size: 26rpx;
+  color: #fff;
+  padding: 5rpx 20rpx;
+  background: #ddd;
+  margin: 10rpx 20rpx 5rpx 0;
+  border-radius: 5rpx;
+}
+
+.price-box {
+  text-align: right;
+  padding-top: 30rpx;
+  color: red;
+}
+
+.price-box .price {
+  font-weight: bold;
+  font-size: 32rpx;
+}
+
+.price-box .unit {
+  font-size: 26rpx;
+}

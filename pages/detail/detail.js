@@ -1,4 +1,6 @@
 // pages/detail/detail.js
+let QQMapWX = require('../../utils/qqmap-wx-jssdk/qqmap-wx-jssdk.min.js');
+let qqmapsdk;
 Page({
 
   /**
@@ -19,17 +21,41 @@ Page({
       onChange: 'swiperBannerChange', //change事件名称
       swiperArr: [{
         id: 1,
-        imgUrl: '/images/tab/home.png'
+        imgUrl: '/images/common/ad_banner1.png'
       },
       {
-        id: 1,
-        imgUrl: '/images/tab/selected_home.png'
+        id: 2,
+        imgUrl: '/images/common/ad_banner2.png'
       },
       {
-        id: 1,
-        imgUrl: '/images/tab/home.png'
+        id: 3,
+        imgUrl: '/images/common/ad_banner3.png'
+      },
+      {
+        id: 4,
+        imgUrl: '/images/common/ad_banner4.png'
       }
       ],
+    },
+    subkey: '66IBZ-RQRKV-25IPI-UMF6H-S2XSJ-KCFRO',
+    markers: [],
+    cellData: {
+      leftIcon: '',
+      rightIcon: '',
+      leftName: '广告牌位置',
+      leftNameBlod: 'blod',
+      leftSub: '',
+      rightSub: '',
+      pageUrl: ''
+    },
+    adData: {
+      leftIcon: '',
+      rightIcon: '',
+      leftName: '基本信息',
+      leftNameBlod: 'blod',
+      leftSub: '',
+      rightSub: '',
+      pageUrl: ''
     },
   },
 
@@ -38,6 +64,42 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+
+  /**
+   * 地图图标
+   */
+  showAddress: function (longitude, latitude) {
+    let self = this;
+    // 实例化腾讯地图API核心类  
+    qqmapsdk = new QQMapWX({
+      key: this.data.subkey
+    });
+    // this.mapCtx = wx.createMapContext('myMap');
+    // 腾讯地图调用接口  
+    qqmapsdk.reverseGeocoder({
+      location: {
+        latitude: latitude,
+        longitude: longitude
+      },
+      success: function (res) {
+        self.setData({
+          markers: [{
+            id: 0,
+            longitude: res.result.location.lng,
+            latitude: res.result.location.lat,
+            title: res.result.address,
+            iconPath: '/images/common/map_icon.png',
+            width: 25,
+            height: 25
+          }]
+        })
+      },
+      fail: function (res) {
+      },
+      complete: function (res) {
+      }
+    });
   },
 
   /**

@@ -1,1 +1,22 @@
 /* pages/detail/detail.wxss */
+page {
+  background: #f6f6f6;
+  padding-bottom: 120rpx;
+}
+
+.detail-item {
+  margin: 30rpx;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 15rpx;
+  box-shadow: 0 5rpx 10rpx rgba(0, 0, 0, 0.16);
+}
+
+.maMap {
+  width: 100%;
+  height: 500rpx;
+}
+
+.browse:nth-child(2) {
+  margin-left: 50rpx;
+}

@@ -7,6 +7,26 @@ Page({
   data: {
     showIcon: true,
     navTitle: '发布',
+    cellArr: [
+      {
+        leftIcon: '',
+        rightIcon: '',
+        leftName: '基础信息',
+        leftNameBlod: 'blod',
+        leftSub: '',
+        rightSub: '',
+        pageUrl: ''
+      },
+      {
+        leftIcon: '',
+        rightIcon: '',
+        leftName: '租凭信息',
+        leftNameBlod: 'blod',
+        leftSub: '',
+        rightSub: '',
+        pageUrl: ''
+      }
+    ]
   },
 
   /**

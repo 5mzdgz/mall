@@ -1,18 +1,23 @@
 /* components/common/image-card/image-card.wxss */
 .image-card {
-  padding: 0 30rpx;
+  margin: 0 30rpx;
+  background: #fff;
+  border-radius: 15rpx;
+  box-shadow: 0 10rpx 10rpx rgba(0, 0, 0, 0.16);
+  overflow: hidden;
 }
 
 .image-box {
   width: 100%;
   background: #ddd;
-  border-radius: 15rpx;
   overflow: hidden;
 }
 
 .image-box video {
   width: 100%;
   height: 100%;
+  border-top-left-radius: 15rpx;
+  border-top-right-radius: 15rpx;
 }
 
 .image-box image {
@@ -21,7 +26,7 @@
 }
 
 .content {
-  padding: 15rpx 0 30rpx 0;
+  padding: 15rpx 30rpx 15rpx 30rpx;
   justify-content: space-between;
 }
 
@@ -70,4 +75,18 @@
 
 .right-box .iconname {
   font-size: 28rpx;
+}
+
+.right-box .icon .iconfont {
+  font-size: 50rpx;
+  color: #4E89FC;
+}
+
+.right-box .collection {
+  font-size: 20rpx;
+  border-radius: 20rpx;
+  padding: 5rpx 20rpx;
+  color: red;
+  border: 1px solid red;
+  margin-top: 10rpx;
 }

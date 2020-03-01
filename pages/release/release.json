@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "navigation": "/components/common/navigation/navigation"
+    "navigation": "/components/common/navigation/navigation",
+    "v-cell": "/components/common/cell/cell"
   }
 }

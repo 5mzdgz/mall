@@ -1,6 +1,10 @@
 {
   "usingComponents": {
     "navigation": "/components/common/navigation/navigation",
-    "v-swiper": "/components/common/swiper/swiper"
+    "v-swiper": "/components/common/swiper/swiper",
+    "v-tabbar": "/components/detail/tabbar/tabbar",
+    "v-cell": "/components/common/cell/cell",
+    "v-goods": "/components/detail/goods/goods",
+    "v-info": "/components/detail/info/info"
   }
 }

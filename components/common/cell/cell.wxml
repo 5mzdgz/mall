@@ -1,5 +1,5 @@
 <!--components/common/cell/cell.wxml-->
-<view class="item-box flex-r back-fff fs-26" data-pageurl="{{pageUrl}}" bindtap="goClickUrl">
+<view class="item-box flex-r back-fff fs-26" data-pageurl="{{cellData.pageUrl}}" bindtap="goClickUrl">
   <view class="left-box flex-r">
     <!-- <image wx:if="{{iconUrl}}" src="{{iconUrl}}" /> -->
     <text class="iconfont {{cellData.leftIcon}}"></text>

@@ -1,1 +1,87 @@
 /* pages/my/my.wxss */
+page {
+  background: #f6f6f6;
+}
+.user-box {
+  position: relative;
+  height: 245rpx;
+  width: 100%;
+  background: #ddd;
+}
+
+.user-box .back-img {
+  width: 100%;
+  height: 100%;
+}
+
+.user {
+  position: absolute;
+  top: 0;
+  height: 245rpx;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  color: #fff;
+  /* padding-bottom: 55rpx; */
+  z-index: 9;
+}
+
+.user image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 100%;
+  background: #fff;
+  margin-left: 30rpx;
+}
+
+.user-info {
+  width: 400rpx;
+  padding: 0 30rpx;
+  font-size: 30rpx;
+  line-height: 40rpx;
+}
+
+.user-info .nike {
+  font-weight: bold;
+}
+
+.user-info .phone {
+  font-size: 28rpx;
+}
+
+.user-info .auth {
+  font-size: 22rpx;
+  background: #4E89FC;
+  width: 120rpx;
+  padding: 2rpx 10rpx;
+  text-align: center;
+  border-radius: 20rpx;
+}
+
+.user-info .iconfont {
+  font-size: 22rpx;
+}
+
+.right-box {
+  color: red;
+  font-size: 30rpx;
+}
+
+.grid-box {
+  position: absolute;
+  z-index: 99;
+  left: 3%;
+  margin: -55rpx 0 30rpx 0;
+  background: #fff;
+  width: 94%;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 10rpx 10rpx rgba(0, 0, 0, 0.16);
+}
+
+.set-box {
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 10rpx 10rpx rgba(0, 0, 0, 0.16);
+  background: #fff;
+  margin: 0rpx 30rpx 0 30rpx;
+}

@@ -46,5 +46,13 @@ Component({
       // console.log(res)//查看正在播放相关变量
       // console.log("播放到第" + res.detail.currentTime + "秒")//查看正在播放时间，以秒为单位
     },
+    goAdverTap() {
+      wx.navigateTo({
+        url: '/pages/detail/detail',
+      })
+    },
+    caneclCollection() {
+      
+    }
   }
 })

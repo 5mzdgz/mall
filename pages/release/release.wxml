@@ -7,5 +7,45 @@ title="{{navTitle}}"
 </navigation>
 
 <view class="container">
-  
+  <view class="form-box">
+    <form>
+      <view class="release">
+        <v-cell cellData="{{cellArr[0]}}"></v-cell>
+        <view class="input-item flex-r">
+          <view class="label">媒体标题</view>
+          <input name="title" placeholder="请输入标题" />
+        </view>
+        <view class="input-item flex-r">
+          <view class="label">媒体类型</view>
+          <input name="" placeholder="媒体类型" />
+        </view>
+        <view class="input-item flex-r">
+          <view class="label">媒体规格</view>
+          <view class="input-box flex-r">
+            <text class="attr-label">高</text>
+            <input name="" placeholder="请输入高度" />
+          </view>
+        </view>
+        <view class="input-item flex-r">
+          <view class="label"></view>
+          <view class="input-box flex-r">
+            <text class="attr-label">宽</text>
+            <input name="" placeholder="请输入宽度" />
+          </view>
+        </view>
+      </view>
+      <view class="release">
+        <v-cell cellData="{{cellArr[1]}}"></v-cell>
+        <view class="input-item flex-r">
+          <view class="label">租凭类型</view>
+          <input name="title" placeholder="租凭类型" />
+        </view>
+        <view class="input-item flex-r">
+          <view class="label">租凭价格</view>
+          <input name="" placeholder="请输入租凭价格" />
+        </view>
+      </view>
+      <button>确定</button>
+    </form>
+  </view>
 </view>

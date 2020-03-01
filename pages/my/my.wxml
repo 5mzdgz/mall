@@ -7,5 +7,24 @@ title="{{navTitle}}"
 </navigation>
 
 <view class="container">
-  <v-swiper swiperData="{{swiperData}}"></v-swiper>
+  <view class="user-box">
+    <image class="back-img" mode='aspectFill' src="/images/common/ad_banner2.png"></image>
+    <view class="user flex-r">
+      <image src="/images/tab/home.png"></image>
+      <view class="user-info">
+        <view class="nike">无名字的柜子</view>
+        <view class="phone">15977952156</view>
+        <view class="auth">已认证 <text class="iconfont icon-xiangyou"></text></view>
+      </view>
+      <view class="right-box">注销</view>
+    </view>
+
+    <!-- <view class="grid-box">
+      <v-grid gridArr="{{gridArr}}"></v-grid>
+    </view> -->
+  </view>
+
+  <view class="set-box">
+    <v-cell myclass="v-cell" wx:for="{{cellArr}}" wx:key="unique" cellData="{{item}}"></v-cell>
+  </view>
 </view>

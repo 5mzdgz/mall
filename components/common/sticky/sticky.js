@@ -22,6 +22,7 @@ Component({
    */
   data: {
     seleted: 0,
+    isDown: false,
     navArr: [
       {
         type: 1,

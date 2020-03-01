@@ -1,11 +1,9 @@
 <!--pages/record/record.wxml-->
-<navigation
-id='Navigation'
-show-icon='{{showIcon}}'
-title="{{navTitle}}"
->
+<navigation id='Navigation' show-icon='{{showIcon}}' title="{{navTitle}}">
 </navigation>
 
 <view class="container">
-  
+  <view class="sticky-box">
+    <v-sticky navbarInitTop="{{navbarInitTop}}" isFixedTop="{{isFixedTop}}"></v-sticky>
+  </view>
 </view>

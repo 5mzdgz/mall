@@ -9,6 +9,7 @@
     "pages/login/login",
     "pages/login/phone/phone",
     "pages/my/my",
+    "pages/auth/auth",
     "pages/about/about"
   ],
   "window":{

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "navigation": "/components/common/navigation/navigation",
-    "v-sticky": "/components/common/sticky/sticky"
+    "v-sticky": "/components/common/sticky/sticky",
+    "product-list": "/components/common/product-list/product-list"
   }
 }

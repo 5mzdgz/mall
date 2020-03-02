@@ -14,7 +14,7 @@ title="{{navTitle}}"
       <view class="user-info">
         <view class="nike">无名字的柜子</view>
         <view class="phone">15977952156</view>
-        <view class="auth">已认证 <text class="iconfont icon-xiangyou"></text></view>
+        <view class="auth" catchtap="goAuth">已认证 <text class="iconfont icon-xiangyou"></text></view>
       </view>
       <view class="right-box">注销</view>
     </view>

@@ -1,13 +1,30 @@
 /* components/common/product/product.wxss */
 
 .product-item {
-  margin: 0 20rpx;
-  padding: 40rpx 0;
+  padding: 20rpx;
   border-bottom: 1px solid #eee;
+  box-shadow: 0 10rpx 10rpx rgba(0, 0, 0, 0.16);
+  margin: 20rpx 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
 }
 
-.product-item:nth-child(1) {
-  border-top: 1px solid #eee;
+.top-box {
+  justify-content: space-between;
+  font-size: 26rpx;
+  padding-bottom: 20rpx;
+}
+
+.status-wei {
+  color: red;
+}
+
+.status-yi {
+  color: #65D766;
+}
+
+.status-dai {
+  color: red;
 }
 
 .img-box {
@@ -25,10 +42,36 @@
 
 .product-box {
   width: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200rpx;
 }
 
 .product-name {
   font-size: 30rpx;
+  font-weight: bold;
+}
+
+.sub-title {
+  margin-left: 50rpx;
+  font-size: 26rpx;
+  color: #aaa;
+}
+
+.type-item {
+  padding: 3rpx 20rpx;
+  background: #4E89FC;
+  border-radius: 5rpx;
+  color: #fff;
+  font-size: 20rpx;
+  margin-right: 20rpx;
+}
+
+.attrs-item {
+  font-size: 24rpx;
+  color: #aaa;
+  margin-right: 20rpx;
 }
 
 .address {
@@ -43,4 +86,26 @@
 .price {
   color: red;
   margin-right: 20rpx;
+  font-weight: bold;
+}
+
+.btn {
+  justify-content: flex-end;
+  padding-top: 20rpx;
+}
+
+.btn .btn-item {
+  border: 1px solid #4E89FC;
+  color: #4E89FC;
+  font-size: 20rpx;
+  padding: 5rpx 10rpx;
+  border-radius: 10rpx;
+  margin-left: 30rpx;
+  width: 120rpx;
+  text-align: center;
+}
+
+.btn-cancel {
+  color: red;
+  border: 1px solid red;
 }

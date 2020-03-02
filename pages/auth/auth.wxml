@@ -1,0 +1,30 @@
+<!--pages/auth/auth.wxml-->
+<navigation id='Navigation' show-icon='{{showIcon}}' title="{{navTitle}}">
+</navigation>
+
+<view class="container">
+  <form>
+    <view class="release">
+      <v-cell cellData="{{cellData}}"></v-cell>
+      <view class="input-item flex-r">
+        <view class="label">公司名称</view>
+        <input name="title" placeholder="租凭类型" />
+      </view>
+      <view class="input-item flex-r">
+        <view class="label">公司地址</view>
+        <input name="" placeholder="请输入租凭价格" />
+      </view>
+      <view class="input-item flex-r">
+        <view class="label">联系电话</view>
+        <input name="" placeholder="请输入租凭价格" />
+      </view>
+      <view class="input-item flex-r no-border">
+        <view class="label">营业执照</view>
+      </view>
+      <view class="img-box">
+        <image mode="widthFix" src="/images/common/ad_banner2.png" />
+      </view>
+    </view>
+    <button>确定</button>
+  </form>
+</view>

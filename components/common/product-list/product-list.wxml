@@ -1,16 +1,41 @@
 <!--components/common/product/product.wxml-->
 <view class="product">
-  <view class="product-item flex-r" wx:for="{{productList}}" wx:key="index">
-    <view class="img-box">
-      <image src="{{item.productImg}}"></image>
+  <view class="product-item" wx:for="{{productList}}" wx:key="index">
+    <view class="top-box flex-r">
+      <text class="time">2020年02月7日</text>
+      <text class="status">待审核</text>
     </view>
-    <view class="product-box">
-      <view class="product-name ellipsis_2">{{item.productName}}</view>
-      <view class="address ellipsis_2">{{item.address}}</view>
-      <view class="price-box">
-        <text class="price">￥{{item.price}}</text>
-        <text class="unit">{{item.unit}}</text>
+    <view class="product-content flex-r">
+      <view class="img-box">
+        <image src="{{item.productImg}}"></image>
       </view>
+      <view class="product-box">
+        <view><text class="product-name">{{item.productName}}</text><text class="sub-title">高杆</text></view>
+        <view class="rent-type flex-r">
+          <view class="type-item">街道</view>
+          <view class="type-item">人流量</view>
+        </view>
+        <view class="attrs flex-r">
+          <view class="attrs-item">
+            <text class="label">高 </text>
+            <text class="count">80</text>
+            <text class="unit">cm</text>
+          </view>
+          <view class="attrs-item">
+            <text class="label">高 </text>
+            <text class="count">80</text>
+            <text class="unit">cm</text>
+          </view>
+        </view>
+        <view class="price-box">
+          <text class="price">￥{{item.price}}</text>
+          <text class="unit">{{item.unit}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="btn flex-r">
+      <view class="btn-item">重新编辑</view>
+      <view class="btn-item">删除</view>
     </view>
   </view>
 </view>

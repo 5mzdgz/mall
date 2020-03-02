@@ -33,6 +33,43 @@ title="{{navTitle}}"
             <input name="" placeholder="请输入宽度" />
           </view>
         </view>
+        <view class="input-item flex-r">
+          <view class="label">媒体位置</view>
+          <input name="title" placeholder="选择省市区" />
+        </view>
+        <view class="input-item flex-r">
+          <view class="label">详细地址</view>
+          <input name="" placeholder="详细地址" />
+        </view>
+        <view class="input-item flex-r no-border">
+          <view class="label">选择标签</view>
+          <view class="tips">(最多选择3个)</view>
+        </view>
+        <view class="label-box b-bottom">
+          <view class="label-item selected-item">高速路</view>
+          <view class="label-item selected-item">小区</view>
+          <view class="label-item">高速路</view>
+          <view class="label-item">小区</view>
+          <view class="label-item">高速路</view>
+          <view class="label-item">小区</view>
+        </view>
+        <view class="desc">
+          <view class="label">媒体描述</view>
+          <textarea placeholder="请输入具体描述" />
+        </view>
+        <view class="input-item flex-r no-border">
+          <view class="label">媒体照片</view>
+          <view class="tips">(最多上传3张)</view>
+        </view>
+        <view class="img-box">
+          <view class="img-item-box">
+            <image mode='widthFix' src="/images/common/ad_banner2.png" />
+            <view class="cancel-icon">×</view>
+          </view>
+          <view class="add-img">
+            <text class="iconfont icon-jia"></text>
+          </view>
+        </view>
       </view>
       <view class="release">
         <v-cell cellData="{{cellArr[1]}}"></v-cell>
@@ -42,6 +79,18 @@ title="{{navTitle}}"
         </view>
         <view class="input-item flex-r">
           <view class="label">租凭价格</view>
+          <input name="" placeholder="请输入租凭价格" />
+        </view>
+        <view class="input-item flex-r">
+          <view class="label">空挡时间</view>
+          <input name="" placeholder="请输入租凭价格" />
+        </view>
+        <view class="input-item flex-r">
+          <view class="label">联系人</view>
+          <input name="" placeholder="请输入租凭价格" />
+        </view>
+        <view class="input-item flex-r">
+          <view class="label">联系电话</view>
           <input name="" placeholder="请输入租凭价格" />
         </view>
       </view>

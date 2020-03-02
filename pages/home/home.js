@@ -1,4 +1,6 @@
 // pages/home/home.js
+import { AdverModel } from '../../models/adver.js';
+const adverModel = new AdverModel();
 Page({
 
   /**
@@ -146,7 +148,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getBannerArr()
+  },
 
+  /**
+   * 获取banner图
+   */
+  getBannerArr:function() {
+    adverModel.adverBanner().then(res => {
+      console.log(res)
+    })
+    adverModel.adverList().then(res => {
+      console.log(res)
+    })
+    adverModel.adverDetail().then(res => {
+      console.log(res)
+    })
+    adverModel.navArr().then(res => {
+      console.log(res)
+    })
+    adverModel.searchType().then(res => {
+      console.log(res)
+    })
   },
 
   /**

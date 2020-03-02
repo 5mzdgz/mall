@@ -54,7 +54,7 @@ Page({
       },
       {
         leftIcon: 'icon-ziyuan1',
-        rightIcon: 'icon-icon-ziyuan1',
+        rightIcon: 'icon-xiangyou',
         leftName: '关于我们',
         leftNameBlod: '',
         leftSub: '',
@@ -69,6 +69,12 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+
+  goAuth:function() {
+    wx.navigateTo({
+      url: '/pages/auth/auth',
+    })
   },
 
   /**

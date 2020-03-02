@@ -6,4 +6,5 @@
   <view class="sticky-box">
     <v-sticky navbarInitTop="{{navbarInitTop}}" isFixedTop="{{isFixedTop}}"></v-sticky>
   </view>
+  <product-list productList="{{productList}}"></product-list>
 </view>

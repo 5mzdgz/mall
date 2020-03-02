@@ -10,6 +10,32 @@ Page({
     navTitle: '记录',
     navbarInitTop: app.globalData.navHeight, //导航栏初始化距顶部的距离
     isFixedTop: false, //是否固定顶部
+    productList: [
+      {
+        id:1,
+        productImg: '/images/tab/home.png',
+        productName: '广告大家团',
+        address: '广告大家团广告大家团',
+        price: '2500',
+        unit: '元/月'
+      },
+      {
+        id: 2,
+        productImg: '/images/tab/home.png',
+        productName: '广告大家团',
+        address: '广告大家团广告大家团',
+        price: '2500',
+        unit: '元/月'
+      },
+      {
+        id: 3,
+        productImg: '/images/tab/home.png',
+        productName: '广告大家团',
+        address: '广告大家团广告大家团',
+        price: '2500',
+        unit: '元/月'
+      }
+    ]
   },
 
   /**

@@ -22,7 +22,25 @@ title="{{navTitle}}"
       </view>
       <view class="popu" wx:if="{{selected>=0}}" bindtap="hidePopuTap"></view>
       <view class="content-box {{selected >=0 ? 'slidown':'slidup'}}">
-        <view class="content-item {{item.checked?'content-checked':''}}" wx:for="{{searchData}}" wx:for-item="item" wx:key="{{index}}" data-index="{{index}}" catchtap="navItemTap">{{item.descr}}</view>
+          <view class="content-item {{item.checked?'content-checked':''}}" wx:for="{{searchData}}" wx:for-item="item" wx:key="{{index}}" data-index="{{index}}" wx:if="{{selected < 3}}" catchtap="navItemTap">{{item.desc}}</view>
+          <view class="category-box" wx:if="{{selected===3}}">
+            <view class="label">趋向</view>
+            <view class="label-item-box">
+              <view class="label-item" wx:for="{{searchData[0]}}" wx:for-item="item" wx:key="{{index}}" data-index="{{index}}" catchtap="navItemTap">{{item.desc}}</view>
+            </view>
+            <view class="label">标签</view>
+            <view class="label-item-box">
+              <view class="label-item" wx:for="{{searchData[1]}}" wx:for-item="item" wx:key="{{index}}" data-index="{{index}}" catchtap="navItemTap">{{item.desc}}</view>
+            </view>
+            <view class="label">类型</view>
+            <view class="label-item-box">
+              <view class="label-item" wx:for="{{searchData[2]}}" wx:for-item="item" wx:key="{{index}}" data-index="{{index}}" catchtap="navItemTap">{{item.desc}}</view>
+            </view>
+            <view class="btn-box flex-r">
+              <view class="btn-cancel">不限</view>
+              <view class="btn-confirm">确定</view>
+            </view>
+          </view>
       </view>
     </view>
   </view>

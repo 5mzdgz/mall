@@ -4,21 +4,30 @@
     <view class="label-title">规格</view>
     <text class="attrs">
       <text class="label">高</text>
-      <text class="count">300</text>
-      <text class="unit">m</text>
+      <text class="count">{{detailData.adHigh}}</text>
+      <text class="unit">cm</text>
     </text>
     <text class="attrs">
       <text class="label">宽</text>
-      <text class="count">300</text>
-      <text class="unit">m</text>
+      <text class="count">{{detailData.adWide}}</text>
+      <text class="unit">cm</text>
     </text>
   </view>
   <view class="info-item">
-    <view class="label-title">规格规格</view>
-    <view class="info-content">规格规格规格规格规格规格规格规格</view>
+    <view class="label-title">媒体类型</view>
+    <view class="info-content">{{detailData.adTypeEntity.typeName}}</view>
   </view>
   <view class="info-item">
-    <view class="label-title">规格</view>
-    <view class="info-content">规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格规格</view>
+    <view class="label-title">到期时间</view>
+    <view class="info-content">{{detailData.endTime?detailData.endTime: ''}}</view>
+  </view>
+
+  <view class="info-item">
+    <view class="label-title">详细地址</view>
+    <view class="info-content">{{detailData.adAddress}}</view>
+  </view>
+  <view class="info-item">
+    <view class="label-title">描述</view>
+    <view class="info-content">{{detailData.descr}}</view>
   </view>
 </view>

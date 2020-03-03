@@ -1,6 +1,6 @@
 /* components/common/image-card/image-card.wxss */
 .image-card {
-  margin: 0 30rpx;
+  margin: 30rpx 30rpx 0 30rpx;
   background: #fff;
   border-radius: 15rpx;
   box-shadow: 0 10rpx 10rpx rgba(0, 0, 0, 0.16);
@@ -32,16 +32,26 @@
 
 .title-box .sub {
   font-size: 24rpx;
-  background: #4E89FC;
   margin-left: 30rpx;
-  color: #fff;
-  padding: 5rpx 10rpx;
-  border-radius: 5rpx;
+  color: #888;
 }
 
 .title-box .title {
   font-size: 30rpx;
   font-weight: bold;
+}
+
+.label-item {
+  width: 120rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  border-radius: 5rpx;
+  margin-right: 20rpx;
+  margin-top: 10rpx;
+  background: #4E89FC;
+  font-size: 22rpx;
+  color: #fff;
+  text-align: center;
 }
 
 .attribute {

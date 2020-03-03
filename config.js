@@ -1,5 +1,5 @@
 const config = {
-  api_base_url: 'http://192.168.1.20:8838',
+  api_base_url: 'http://www.ggweijie.com:8838',
 }
 
 

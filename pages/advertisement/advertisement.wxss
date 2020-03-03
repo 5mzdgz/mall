@@ -64,7 +64,6 @@ page {
 }
 
 .content-box {
-  position: absolute;
   padding: 0 80rpx;
   z-index: 999;
   background: #fff;
@@ -80,6 +79,44 @@ page {
   background: #6987ac;
 }
 
+.label-item-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.label-item-box .label-item {
+  margin: 10rpx 20rpx;
+  width: 150rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  border-radius: 5rpx;
+  background: #aaa;
+  color: #fff;
+  font-size: 24rpx;
+}
+
+.btn-box {
+  font-size: 24rpx;
+  padding: 20rpx 0;
+}
+
+.btn-box .btn-cancel, .btn-confirm {
+  width: 150rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  border-radius: 5rpx;
+  background: #aaa;
+  color: #fff;
+  margin-left: 20rpx;
+}
+
+.btn-confirm {
+  background: #1490ce;
+  margin-left: 230rpx;
+}
+
 .slidown {
   display: block;
   animation: slidown .5s ease-in both;
@@ -91,11 +128,11 @@ page {
 /*筛选项隐藏 显示动画 start*/
 @keyframes slidown {
   from {
-    height: 0;
+    height: 0rpx;
   }
 
   to {
-    height: 400rpx;
+    max-height: 800rpx;
   }
 }
 
@@ -107,7 +144,7 @@ page {
 
 @keyframes slidup {
   from {
-    height: 400rpx;
+    max-height: 800rpx;
   }
 
   to {
@@ -121,7 +158,7 @@ page {
   right: 0;
   left: 0;
   top: 340rpx;
-  z-index: 9;
+  z-index: -9;
   background: #000;
   opacity: 0.2;
 }

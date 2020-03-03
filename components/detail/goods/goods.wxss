@@ -27,7 +27,7 @@
   font-size: 26rpx;
   color: #fff;
   padding: 5rpx 20rpx;
-  background: #ddd;
+  background: #4E89FC;
   margin: 10rpx 20rpx 5rpx 0;
   border-radius: 5rpx;
 }

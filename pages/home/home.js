@@ -8,7 +8,7 @@ Page({
    */
   data: {
     showIcon: false,
-    navTitle: 'mall商城',
+    navTitle: 'mall',
     swiperData: {
       height: 353, //轮播图高度
       circular: true, //轮播衔接
@@ -19,23 +19,7 @@ Page({
       vertical: false, //是否纵向滚动
       current: 0, //滚动到当前项
       onChange: 'swiperBannerChange', //change事件名称
-      swiperArr: [{
-        id: 1,
-        imgUrl: '/images/common/ad_banner1.png'
-      },
-      {
-        id: 2,
-        imgUrl: '/images/common/ad_banner2.png'
-      },
-      {
-        id: 3,
-        imgUrl: '/images/common/ad_banner3.png'
-      },
-      {
-        id: 4,
-        imgUrl: '/images/common/ad_banner4.png'
-      }
-      ],
+      swiperArr: [],
     },
     gridArr: [{
       id: 1,
@@ -66,7 +50,7 @@ Page({
       cellData: {
         leftIcon: '',
         rightIcon: '',
-        leftName: '咨询',
+        leftName: '资讯',
         leftNameBlod: 'blod',
         leftSub: '',
         rightSub: '',
@@ -106,41 +90,43 @@ Page({
       cellData: {
         leftIcon: '',
         rightIcon: '',
-        leftName: '咨询',
+        leftName: '热门',
         leftNameBlod: 'blod',
         leftSub: '',
         rightSub: '',
         pageUrl: ''
       },
-      cardData: {
-        type: 1,
-        height: 324,
-        imageUrl: '/images/common/ad_banner2.png',
-        title: '金难大道南',
-        subArr: ['路口', '高杆'],
-        attrArr: [
-          {
-            label: '高',
-            number: 80,
-            unit: 'm'
-          },
-          {
-            label: '长',
-            number: 80,
-            unit: 'm'
-          },
-          {
-            label: '宽',
-            number: 80,
-            unit: 'm'
-          }
-        ],
-        rightText: '咨询',
-        icon: 'icon-dianhuazixun',
-        price: 2000,
-        unit: '元/月',
-        videoUrl: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
-      }
+      cardArr:[
+        {
+          type: 1,
+          height: 324,
+          imageUrl: '/images/common/ad_banner2.png',
+          title: '金难大道南',
+          subArr: ['路口', '高杆'],
+          attrArr: [
+            {
+              label: '高',
+              number: 80,
+              unit: 'm'
+            },
+            {
+              label: '长',
+              number: 80,
+              unit: 'm'
+            },
+            {
+              label: '宽',
+              number: 80,
+              unit: 'm'
+            }
+          ],
+          rightText: '咨询',
+          icon: 'icon-dianhuazixun',
+          price: 2000,
+          unit: '元/月',
+          videoUrl: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+        }
+      ] 
     }
   },
 
@@ -155,21 +141,31 @@ Page({
    * 获取banner图
    */
   getBannerArr:function() {
+    const swiperData = this.data.swiperData;
+    const recommend = this.data.recommend;
     adverModel.adverBanner().then(res => {
+      swiperData.swiperArr = res.data.records;
       console.log(res)
+      this.setData({
+        swiperData: swiperData
+      })
     })
     adverModel.adverList().then(res => {
+      const adverList = res.data.records;
+      adverList.forEach(item => {
+        item.height = 324
+        item.icon = 'icon-dianhuazixun',
+        item.rightText = '咨询'
+      })
+      recommend.cardArr = adverList
       console.log(res)
+      this.setData({
+        recommend: recommend
+      })
     })
-    adverModel.adverDetail().then(res => {
-      console.log(res)
-    })
-    adverModel.navArr().then(res => {
-      console.log(res)
-    })
-    adverModel.searchType().then(res => {
-      console.log(res)
-    })
+    // adverModel.searchType().then(res => {
+    //   console.log(res)
+    // })
   },
 
   /**

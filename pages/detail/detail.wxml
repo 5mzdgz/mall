@@ -8,19 +8,19 @@ title="{{navTitle}}"
 
 <view class="container">
   <view class="swiper-box">
-    <v-swiper swiperData="{{swiperData}}"></v-swiper>
+    <v-swiper swiperData="{{detailData}}"></v-swiper>
   </view>
 
-  <v-goods></v-goods>
+  <v-goods detailData="{{detailData}}"></v-goods>
 
   <view class="detail-item">
     <v-cell cellData="{{adData}}"></v-cell>
-    <v-info></v-info>
+    <v-info detailData="{{detailData}}"></v-info>
   </view>
 
   <view class="detail-item">
     <v-cell cellData="{{cellData}}"></v-cell>
-    <map id="myMap" class="maMap" longitude="{{dData.longitude}}" latitude="{{dData.latitude}}" scale="{{scale}}" markers="{{markers}}" subkey="{{subkey}}" />
+    <map id="myMap" class="maMap" longitude="{{detailData.longitude}}" latitude="{{detailData.latitude}}" scale="{{scale}}" markers="{{markers}}" subkey="{{subkey}}" />
   </view>
   
   <v-tabbar></v-tabbar>

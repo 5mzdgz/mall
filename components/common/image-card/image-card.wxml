@@ -1,24 +1,32 @@
 <!--components/common/image-card/image-card.wxml-->
 <view class="image-card" bindtap="goAdverTap">
   <view class="image-box" style="height: {{cardData.height}}rpx;">
-    <image wx:if="{{!cardData.videoUrl}}" src="{{cardData.imageUrl}}"></image>
-    <video src="{{cardData.videoUrl}}" poster='{{cardData.imageUrl}}' enable-danmu="{{false}}" danmu-btn="{{false}}" controls object-fit="cover" bindplay='bindplay' bindpause='bindpause' bindended='bindend' bindtimeupdate="bindtimeupdate" wx:else></video>
+    <image wx:if="{{!cardData.videoUrl}}" src="{{cardData.imageUrlList[0]}}"></image>
+    <video wx:if="{{cardData.videoUrl}}" src="{{cardData.videoUrl}}" poster='{{cardData.imageUrlList[0]}}' enable-danmu="{{false}}" danmu-btn="{{false}}" controls object-fit="cover" bindplay='bindplay' bindpause='bindpause' bindended='bindend' bindtimeupdate="bindtimeupdate"></video>
   </view>
   <view class="content flex-r">
     <view class="left-box">
       <view class="title-box flex-r">
-        <view class="title">{{cardData.title}}</view>
-        <view class="sub" wx:for="{{cardData.subArr}}" wx:for-item="subItem" wx:key="unique">{{subItem}}</view>
+        <view class="title">{{cardData.adAddress}}</view>
+        <view class="sub">{{cardData.adTypeEntity.typeName}}</view>
+      </view>
+      <view class="label-box flex-r">
+        <view class="label-item">搞得</view>
+        <view class="label-item">搞得</view>
       </view>
       <view class="attribute flex-r">
-        <view class="attr-item" wx:for="{{cardData.attrArr}}" wx:for-item="attrItem" wx:key="unique">
-          <text class="label">{{attrItem.label}}</text>
-          <text class="text">{{attrItem.number}}{{attrItem.unit}}</text>
+        <view class="attr-item">
+          <text class="label">高</text>
+          <text class="text">{{cardData.adHigh}}cm</text>
+        </view>
+        <view class="attr-item">
+          <text class="label">宽</text>
+          <text class="text">{{cardData.adWide}}cm</text>
         </view>
       </view>
       <view class="price-box">
-        <text class="price">{{cardData.price}}</text>
-        <text class="unit">{{cardData.unit}}</text>
+        <text class="price">{{cardData.adPriceEntity.avgPrice}}</text>
+        <text class="unit">元/月</text>
       </view>
     </view>
     <view class="right-box">

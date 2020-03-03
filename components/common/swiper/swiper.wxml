@@ -9,7 +9,7 @@
     >
     <block wx:for="{{swiperData.swiperArr}}" wx:key="{{index}}">
       <swiper-item class="banner-item" data-item="{{item}}">
-        <image class="item-image" wx:if="{{item.imgUrl}}" mode='' src="{{item.imgUrl}}" />
+        <image class="item-image" wx:if="{{item.imageUrl}}" mode='' src="{{item.imageUrl}}" />
         <text wx:if="{{item.text}}">{{item.text}}</text>
       </swiper-item>
     </block>

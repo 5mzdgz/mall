@@ -24,6 +24,6 @@ title="{{navTitle}}"
   </view>
   <view class="grid-box">
     <v-cell cellData="{{recommend.cellData}}"></v-cell>
-    <image-card cardData="{{recommend.cardData}}"></image-card>
+    <image-card wx:for="{{recommend.cardArr}}" wx:key="index" cardData="{{item}}"></image-card>
   </view>
 </view>

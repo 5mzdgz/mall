@@ -1,0 +1,10 @@
+<!--pages/setting/setting.wxml-->
+<navigation
+id='Navigation'
+show-icon='{{showIcon}}'
+title="{{navTitle}}"
+>
+</navigation>
+<view class="container">
+<button open-type='openSetting' type='primary'>去设置页开启授权</button>
+</view>

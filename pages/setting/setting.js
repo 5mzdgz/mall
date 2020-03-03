@@ -1,4 +1,4 @@
-// pages/auth/auth.js
+// pages/setting/setting.js
 Page({
 
   /**
@@ -6,7 +6,7 @@ Page({
    */
   data: {
     showIcon: true,
-    navTitle: '资质认证'
+    navTitle: '设置'
   },
 
   /**

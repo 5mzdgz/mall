@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "navigation": "/components/common/navigation/navigation",
+    "image-cropper": "/components/common/image-cropper/image-cropper",
     "v-cell": "/components/common/cell/cell"
   }
 }

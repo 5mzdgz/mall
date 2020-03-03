@@ -9,7 +9,7 @@
 }
 
 .release .label {
-  width: 120rpx;
+  width: 170rpx;
   font-size: 28rpx;
   margin-right: 20rpx;
 }
@@ -25,7 +25,7 @@
 }
 
 input {
-  width: 500rpx;
+  width: 440rpx;
 }
 
 .label-box {

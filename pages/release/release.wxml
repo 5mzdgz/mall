@@ -8,34 +8,46 @@ title="{{navTitle}}"
 
 <view class="container">
   <view class="form-box">
-    <form>
+    <view class="uqload" wx:if="{{isUqloadImg}}">
+      <view class="btn-uqloadimg flex-r">
+        <view class="btn-cancel" catchtap="hideModel">取消</view>
+        <view class="confrim" catchtap="showModel">确定</view>
+      </view>
+      <image-cropper id="image-cropper" upload="true" limit_move="true" disable_ratio="true" disable_rotate="true" width="{{width}}" height="{{height}}" imgSrc="{{src}}" bindload="cropperload" bindimageload="loadimage" bindtapcut="clickcut">
+      </image-cropper>
+    </view>
+    <form wx:else>
       <view class="release">
         <v-cell cellData="{{cellArr[0]}}"></v-cell>
         <view class="input-item flex-r">
           <view class="label">媒体标题</view>
           <input name="title" placeholder="请输入标题" />
         </view>
-        <view class="input-item flex-r">
-          <view class="label">媒体类型</view>
-          <input name="" placeholder="媒体类型" />
-        </view>
+         <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+          <view class="input-item flex-r">
+            <view class="label">媒体类型</view>
+            <input name="" placeholder="媒体类型" />
+            <view class="iconfont icon-xiangyou"></view>
+          </view>
+        </picker>
         <view class="input-item flex-r">
           <view class="label">媒体规格</view>
           <view class="input-box flex-r">
             <text class="attr-label">高</text>
-            <input name="" placeholder="请输入高度" />
+            <input name="" placeholder="例: 50cm、1.8m" />
           </view>
         </view>
         <view class="input-item flex-r">
           <view class="label"></view>
           <view class="input-box flex-r">
             <text class="attr-label">宽</text>
-            <input name="" placeholder="请输入宽度" />
+            <input name="" placeholder="例: 50cm、1.8m" />
           </view>
         </view>
         <view class="input-item flex-r">
           <view class="label">媒体位置</view>
           <input name="title" placeholder="选择省市区" />
+          <view class="iconfont icon-ditu-dibiao" catchtap="getLocation"></view>
         </view>
         <view class="input-item flex-r">
           <view class="label">详细地址</view>
@@ -46,12 +58,7 @@ title="{{navTitle}}"
           <view class="tips">(最多选择3个)</view>
         </view>
         <view class="label-box b-bottom">
-          <view class="label-item selected-item">高速路</view>
-          <view class="label-item selected-item">小区</view>
-          <view class="label-item">高速路</view>
-          <view class="label-item">小区</view>
-          <view class="label-item">高速路</view>
-          <view class="label-item">小区</view>
+          <view class="label-item {{item.checked?'selected-item' : ''}}" wx:for="{{labelArr}}" wx:key="index" data-index="{{index}}" catchtap="selectedLabelTap">{{item.labelName}}</view>
         </view>
         <view class="desc">
           <view class="label">媒体描述</view>
@@ -66,25 +73,31 @@ title="{{navTitle}}"
             <image mode='widthFix' src="/images/common/ad_banner2.png" />
             <view class="cancel-icon">×</view>
           </view>
-          <view class="add-img">
+          <view class="add-img" catchtap="shagnchuangImg">
             <text class="iconfont icon-jia"></text>
           </view>
         </view>
       </view>
       <view class="release">
         <v-cell cellData="{{cellArr[1]}}"></v-cell>
-        <view class="input-item flex-r">
-          <view class="label">租凭类型</view>
-          <input name="title" placeholder="租凭类型" />
-        </view>
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+          <view class="input-item flex-r">
+            <view class="label">租凭类型</view>
+            <input name="title" value="{{array[index]}}" placeholder="租凭类型" />
+            <view class="iconfont icon-xiangyou"></view>
+          </view>
+        </picker>
         <view class="input-item flex-r">
           <view class="label">租凭价格</view>
           <input name="" placeholder="请输入租凭价格" />
         </view>
-        <view class="input-item flex-r">
-          <view class="label">空挡时间</view>
-          <input name="" placeholder="请输入租凭价格" />
-        </view>
+        <picker mode="date" value="{{date}}" start="2020-01-01" end="2025-12-31" bindchange="bindDateChange">
+          <view class="input-item flex-r">
+            <view class="label">空挡时间</view>
+              <input name="date" value="{{date}}" placeholder="请输入租凭价格" />
+              <view class="iconfont icon-jilu"></view>
+          </view>
+        </picker>
         <view class="input-item flex-r">
           <view class="label">联系人</view>
           <input name="" placeholder="请输入租凭价格" />

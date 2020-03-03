@@ -10,7 +10,8 @@
     "pages/login/phone/phone",
     "pages/my/my",
     "pages/auth/auth",
-    "pages/about/about"
+    "pages/about/about",
+    "pages/setting/setting"
   ],
   "window":{
     "backgroundTextStyle":"light",

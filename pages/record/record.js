@@ -1,4 +1,7 @@
 // pages/record/record.js
+import { config } from '../../config.js';
+import { AdverModel } from '../../models/adver.js';
+const adverModel = new AdverModel();
 const app = getApp();
 Page({
 
@@ -10,39 +13,27 @@ Page({
     navTitle: '记录',
     navbarInitTop: app.globalData.navHeight, //导航栏初始化距顶部的距离
     isFixedTop: false, //是否固定顶部
-    productList: [
-      {
-        id:1,
-        productImg: '/images/tab/home.png',
-        productName: '广告大家团',
-        address: '广告大家团广告大家团',
-        price: '2500',
-        unit: '元/月'
-      },
-      {
-        id: 2,
-        productImg: '/images/tab/home.png',
-        productName: '广告大家团',
-        address: '广告大家团广告大家团',
-        price: '2500',
-        unit: '元/月'
-      },
-      {
-        id: 3,
-        productImg: '/images/tab/home.png',
-        productName: '广告大家团',
-        address: '广告大家团广告大家团',
-        price: '2500',
-        unit: '元/月'
-      }
-    ]
+    obj: {
+      page: 1,
+      pageSize: 5
+    },
+    productList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getAdStatusList(this.data.obj)
+  },
 
+  getAdStatusList: function (obj) {
+    adverModel.adStatusList(obj).then(res => {
+      console.log(res)
+      this.setData({
+        productList: res.data.records
+      })
+    })
   },
   /**
    * 监听页面滑动事件

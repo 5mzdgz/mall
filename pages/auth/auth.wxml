@@ -3,35 +3,35 @@
 </navigation>
 
 <view class="container">
-  <form>
+  <form bindsubmit='saveRecommendTap'>
     <view class="release">
       <view class="input-item flex-r">
         <view class="label">公司名称</view>
-        <input name="title" placeholder="租凭类型" />
+        <input name="title" placeholder="公司名称" />
       </view>
       <view class="input-item flex-r">
         <view class="label">营业执照号</view>
-        <input name="" placeholder="请输入租凭价格" />
+        <input name="" placeholder="请输入营业执照号" />
       </view>
       <view class="input-item flex-r">
         <view class="label">公司地址</view>
-        <input name="" placeholder="请输入租凭价格" />
+        <input name="" placeholder="请输入公司地址" />
       </view>
       <view class="input-item flex-r">
         <view class="label">联系电话</view>
-        <input name="" placeholder="请输入租凭价格" />
+        <input name="" placeholder="请输入联系电话" />
       </view>
       <view class="input-item flex-r">
         <view class="label">联系人</view>
-        <input name="" placeholder="请输入租凭价格" />
+        <input name="" placeholder="请输入联系人" />
       </view>
       <view class="input-item flex-r">
         <view class="label">法人姓名</view>
-        <input name="" placeholder="请输入租凭价格" />
+        <input name="" placeholder="请输入法人姓名" />
       </view>
       <view class="input-item flex-r">
         <view class="label">法人身份证号</view>
-        <input name="" placeholder="请输入租凭价格" />
+        <input name="" placeholder="请输入法人身份证号" />
       </view>
       <view class="input-item flex-r no-border">
         <view class="label">营业执照</view>
@@ -40,6 +40,6 @@
         <image mode="widthFix" src="/images/common/ad_banner2.png" />
       </view>
     </view>
-    <button>确定</button>
+    <button form-type='submit'>确定</button>
   </form>
 </view>

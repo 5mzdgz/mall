@@ -62,6 +62,14 @@ class AdverModel extends HTTP {
     })
   }
 
+  adStatusList(obj) {
+    return this.request({
+      url: '/ad/adStatusList',
+      method: 'POST',
+      data: obj
+    })
+  }
+
 }
 
 

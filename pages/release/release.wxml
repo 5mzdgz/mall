@@ -30,9 +30,9 @@ title="{{navTitle}}"
             <view class="iconfont icon-xiangyou"></view>
           </view>
         </picker>
-        <view class="input-item flex-r">
+        <view class="input-item flex-r" wx:if="{{modelType === '11'}}">
           <view class="label">显示时间</view>
-          <input name="adSecond" placeholder="LED屏显示时间" />
+          <input name="adSecond" placeholder="LED屏显示时间,秒为单位" />
         </view>
         <view class="input-item flex-r">
           <view class="label">媒体规格</view>
@@ -64,7 +64,6 @@ title="{{navTitle}}"
         <view class="label-box b-bottom">
           <view class="label-item {{item.checked?'selected-item' : ''}}" wx:for="{{labelArr}}" wx:key="index" data-index="{{index}}" catchtap="selectedLabelTap">
             <text>{{item.labelName}}</text>
-            <!-- <icon type="cancel" size="18" color="red"></icon> -->
           </view>
         </view>
         <view class="desc">
@@ -76,11 +75,11 @@ title="{{navTitle}}"
           <view class="tips">(最多上传3张)</view>
         </view>
         <view class="img-box">
-          <view class="img-item-box">
-            <image mode='widthFix' src="/images/common/ad_banner2.png" />
-            <view class="cancel-icon">×</view>
+          <view class="img-item-box" wx:for="{{imagePathArr}}" wx:key="index" >
+            <image mode='widthFix' src="{{item}}" />
+            <view class="cancel-icon" catchtap="cancelImgItem" data-index="{{index}}">×</view>
           </view>
-          <view class="add-img" catchtap="shagnchuangImg">
+          <view class="add-img" wx:if="{{imagePathArr.length!=3}}" catchtap="shagnchuangImg">
             <text class="iconfont icon-jia"></text>
           </view>
         </view>

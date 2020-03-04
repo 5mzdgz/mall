@@ -1,4 +1,5 @@
 // pages/release/release.js
+import { config } from '../../config.js';
 import { AdverModel } from '../../models/adver.js';
 const adverModel = new AdverModel();
 const app = getApp();
@@ -18,9 +19,11 @@ Page({
     latitude: '',
     longitude: '',
     labelId: '',
+    typeEntityList:[],
     modelTypeArr: [],
     labelArr: [],
     status: '0',
+    imagePathArr: [],
     statusArray: ['请选择状态', '空闲', '在租'],
     cellArr: [
       {
@@ -48,15 +51,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.cropper = this.selectComponent("#image-cropper");
+    // this.cropper = this.selectComponent("#image-cropper");
     this.getNavArr();
   },
 
   
 
   saveRecommendTap: function(e) {
+    let typeId;
     const modelType = e.detail.value.modelType;
     console.log(modelType);
+    this.data.typeEntityList.forEach(item => {
+      if (modelType === item.typeName) {
+        typeId = item.typeId
+      }
+    })
     
     let value = e.detail.value;
     if (this.data.status === '0') {
@@ -72,24 +81,31 @@ Page({
       descr: value.descr,
       adHigh: value.adHigh,
       adWide: value.adWide,
-      imageUrl: value.imageUrl,
-      typeId: 1,
+      imageUrl: '',
+      typeId: typeId,
       labelId: this.data.labelId,
       latitude: this.data.latitude,
       longitude: this.data.longitude,
-      adAddress: value.address,
+      adAddress: value.adAddress,
       price: value.lowPrice + '-' + value.highPrice,
       status: this.data.status,
       contactName: value.contactName,
       contactPhone: value.contactPhone,
       endTimeStr: value.endTimeStr
     }
-    adverModel.adAdd().then(res => {
-      console.log(res)
-    })
+    console.log(obj)
+    let data = {
+      url: config.api_base_url + '/upload/file',//这里是你图片上传的接
+      path: this.data.imagePathArr,//这里是选取的图片的地址数组
+    }
+    let uploadImages = [];
+    this.uploadimg(data, uploadImages, obj, this);
   },
 
   showModel: function() {
+    this.cropper.getImg(res => {
+      console.log(res)
+    })
     this.setData({
       isUqloadImg: false
     })
@@ -101,10 +117,10 @@ Page({
   },
 
   shagnchuangImg: function() {
-    this.cropper = this.selectComponent("#image-cropper");
     this.setData({
       isUqloadImg: true
     })
+    this.cropper = this.selectComponent("#image-cropper");
     this.cropper.upload()
   },
   cropperload(e) {
@@ -117,12 +133,33 @@ Page({
     this.cropper.imgReset();
   },
   clickcut(e) {
+    let imagePathArr = this.data.imagePathArr;
     console.log(e.detail);
+    this.cropper.getImg(res => {
+      console.log(res.url)
+      if (res.url) {
+        imagePathArr.push(res.url)
+        this.setData({
+          imagePathArr: imagePathArr
+        })
+      }
+    })
+    console.log(this.data.imagePathArr)
     //点击裁剪框阅览图片
     wx.previewImage({
       current: e.detail.url, // 当前显示图片的http链接
       urls: [e.detail.url] // 需要预览的图片http链接列表
     })
+  },
+
+  cancelImgItem: function(e) {
+    let imagePathArr = this.data.imagePathArr
+    const index = e.currentTarget.dataset.index;
+    imagePathArr.splice(index, 1);
+    this.setData({
+      imagePathArr: imagePathArr
+    })
+    console.log(index, imagePathArr)
   },
 
   selectedLabelTap: function(e) {
@@ -207,7 +244,7 @@ Page({
           if (REGION_PROVINCE != null) {
             that.setData({
               region: [addressBean.REGION_PROVINCE, addressBean.REGION_CITY, addressBean.REGION_COUNTRY],
-              adAddress: addressBean.ADDRESS,
+              adAddress: addressBean.REGION_PROVINCE + addressBean.REGION_CITY + addressBean.REGION_COUNTRY + addressBean.ADDRESS,
               latitude: res.latitude,
               longitude: res.longitude
             });
@@ -281,6 +318,7 @@ Page({
         labelArr.push(item)
       })
       this.setData({
+        typeEntityList: res.data.typeEntityList,
         modelTypeArr: modelTypeArr,
         labelArr: labelArr
       })
@@ -304,6 +342,81 @@ Page({
     console.log(e)
     this.setData({
       status: e.detail.value
+    })
+  },
+
+  // 图片
+  uploadimg: function (data, uploadImages, obj) {
+    var loginToken = wx.getStorageSync('loginToken');
+    var that = this,
+      i = data.i ? data.i : 0,
+      success = data.success ? data.success : 0,
+      fail = data.fail ? data.fail : 0;
+      console.log(data.path[i])
+    wx.uploadFile({
+      url: data.url,
+      filePath: data.path[i],
+      name: 'file',
+      formData: null,
+      header: {
+        'content-type': 'application/json',
+        'Authorization': wx.getStorageSync('loginToken')
+      },
+      success: (res) => {
+        const resData = JSON.parse(res.data)
+        console.log(res)
+        if (i == 0 || i === 0) {
+          uploadImages = resData.date
+        } else {
+          uploadImages = uploadImages + "," + resData.date;
+        }
+        console.log(uploadImages)
+        obj.imageUrl = uploadImages
+        success++;
+        // console.log(i);
+        //这里可能有BUG，失败也会执行这里
+      },
+      fail: (res) => {
+        fail++;
+        // console.log('fail:' + i + "fail:" + fail);
+      },
+      complete: () => {
+        // console.log(i);
+        i++;
+        if (i == data.path.length) {   //当图片传完时，停止调用
+          that.saveRelease(obj)
+          // console.log(uploadImages);
+          // console.log('执行完毕');
+          // console.log('成功：' + success + " 失败：" + fail);
+        } else {//若图片还没有传完，则继续调用函数
+          // console.log(i);
+          data.i = i;
+          data.success = success;
+          data.fail = fail;
+          that.uploadimg(data, uploadImages, obj);
+        }
+      }
+    });
+  },
+
+  saveRelease: function(obj) {
+    console.log(obj)
+    for (let key in obj) {
+      if (key != 'adSecond' && key != 'endTimeStr') {
+        if(!obj[key]) {
+          wx.showToast({
+            title: '请完成必填项',
+            icon: 'none'
+          })
+          return;
+        }
+      }
+    }
+    adverModel.adAdd(obj).then(res => {
+      console.log(res)
+      wx.navigateTo({
+        url: '../record/record',
+      })
     })
   },
 

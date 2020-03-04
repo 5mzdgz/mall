@@ -40,7 +40,7 @@ class HTTP {
       data: data,
       header: {
         'content-type': 'application/json',
-        Authorization: wx.getStorageSync('token')
+        Authorization: wx.getStorageSync('loginToken')
       },
       success: (res) => {
         const code = res.statusCode.toString()

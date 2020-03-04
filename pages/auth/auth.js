@@ -1,4 +1,8 @@
 // pages/auth/auth.js
+import { config } from '../../config.js';
+import { AdverModel } from '../../models/adver.js';
+const adverModel = new AdverModel();
+const app = getApp();
 Page({
 
   /**

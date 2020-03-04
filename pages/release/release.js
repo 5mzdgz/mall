@@ -1,4 +1,7 @@
 // pages/release/release.js
+import { AdverModel } from '../../models/adver.js';
+const adverModel = new AdverModel();
+const app = getApp();
 Page({
 
   /**
@@ -10,23 +13,15 @@ Page({
     src: '',
     width: 375,//宽度
     height: 175,//高度  
-    isUqloadImg: true,
-    date: '2020-03-09',
-    array: ['基础信息', '发布', '大雨', '基础信息'],
-    labelArr: [
-      {
-        labelName: '高速路',
-        checked: false
-      },
-      {
-        labelName: '高速路',
-        checked: false
-      }, 
-      {
-        labelName: '高速路',
-        checked: false
-      },
-    ],
+    isUqloadImg: false,
+    date: '',
+    latitude: '',
+    longitude: '',
+    labelId: '',
+    modelTypeArr: [],
+    labelArr: [],
+    status: '0',
+    statusArray: ['请选择状态', '空闲', '在租'],
     cellArr: [
       {
         leftIcon: '',
@@ -54,6 +49,44 @@ Page({
    */
   onLoad: function (options) {
     this.cropper = this.selectComponent("#image-cropper");
+    this.getNavArr();
+  },
+
+  
+
+  saveRecommendTap: function(e) {
+    const modelType = e.detail.value.modelType;
+    console.log(modelType);
+    
+    let value = e.detail.value;
+    if (this.data.status === '0') {
+      wx.showToast({
+        title: '请选择租赁状态',
+        icon: 'none'
+      })
+      return false;
+    }
+    const obj = {
+      itemName: value.itemName,
+      adSecond: value.adSecond,
+      descr: value.descr,
+      adHigh: value.adHigh,
+      adWide: value.adWide,
+      imageUrl: value.imageUrl,
+      typeId: 1,
+      labelId: this.data.labelId,
+      latitude: this.data.latitude,
+      longitude: this.data.longitude,
+      adAddress: value.address,
+      price: value.lowPrice + '-' + value.highPrice,
+      status: this.data.status,
+      contactName: value.contactName,
+      contactPhone: value.contactPhone,
+      endTimeStr: value.endTimeStr
+    }
+    adverModel.adAdd().then(res => {
+      console.log(res)
+    })
   },
 
   showModel: function() {
@@ -94,14 +127,40 @@ Page({
 
   selectedLabelTap: function(e) {
     const labelArr = this.data.labelArr;
+    let arr = []
+    
     const index = e.currentTarget.dataset.index;
     if (labelArr[index].checked) {
       labelArr[index].checked = false;
     } else {
       labelArr[index].checked = true;
     }
+    labelArr.forEach(item => {
+      if (item.checked) {
+        arr.push(item)
+      }
+    })
+    if (arr.length === 4) {
+      labelArr.forEach(item => {
+        if (arr[0] === item) {
+          item.checked = false
+        }
+      })
+    }
+    let str = '', labelId;
+    arr.forEach(item => {
+      str += item.labelId + ','
+    })
+    if (arr.length === 4) {
+      labelId = str.substring(0, str.length - 1);
+      labelId = labelId.substr(2);
+    } else {
+      labelId = str.substring(0, str.length - 1);
+    }
+    console.log(labelId);
     this.setData({
-      labelArr: labelArr
+      labelArr: labelArr,
+      labelId: labelId
     })
   },
   // 地图中选地址
@@ -147,14 +206,11 @@ Page({
           }
           if (REGION_PROVINCE != null) {
             that.setData({
-              // ADDRESS_1_STR:
-              //   addressBean.REGION_PROVINCE + " "
-              //   + addressBean.REGION_CITY + ""
-              //   + addressBean.REGION_COUNTRY
               region: [addressBean.REGION_PROVINCE, addressBean.REGION_CITY, addressBean.REGION_COUNTRY],
-              address: addressBean.ADDRESS,
+              adAddress: addressBean.ADDRESS,
+              latitude: res.latitude,
+              longitude: res.longitude
             });
-            // that.setData(addressBean); 
           }
         } else {
           wx.showToast({
@@ -209,6 +265,45 @@ Page({
           })
         }
       }
+    })
+  },
+
+  getNavArr: function () {
+    adverModel.navArr().then(res => {
+      console.log(res)
+      const modelTypeArr = this.data.modelTypeArr;
+      const labelArr = this.data.labelArr;
+      res.data.typeEntityList.forEach(item => {
+        modelTypeArr.push(item.typeName)
+      })
+      res.data.labelEntityList.forEach(item => {
+        item.checked = false
+        labelArr.push(item)
+      })
+      this.setData({
+        modelTypeArr: modelTypeArr,
+        labelArr: labelArr
+      })
+     
+    })
+  },
+
+  modelPickerChange:function(e) {
+    console.log(e)
+    this.setData({
+      modelType: e.detail.value
+    })
+  },
+  bindDateChange: function(e) {
+    console.log(e)
+    this.setData({
+      date: e.detail.value
+    })
+  },
+  statusPickerChange: function(e) {
+    console.log(e)
+    this.setData({
+      status: e.detail.value
     })
   },
 

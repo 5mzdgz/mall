@@ -94,6 +94,11 @@ page {
   background: #aaa;
   color: #fff;
   font-size: 24rpx;
+  position: relative;
+}
+
+.label-item-box .checked-label-item {
+  background: #1490ce;
 }
 
 .btn-box {
@@ -132,7 +137,7 @@ page {
   }
 
   to {
-    max-height: 800rpx;
+    max-height: 500rpx;
   }
 }
 
@@ -144,7 +149,7 @@ page {
 
 @keyframes slidup {
   from {
-    max-height: 800rpx;
+    max-height: 500rpx;
   }
 
   to {
@@ -169,4 +174,10 @@ page {
 
 .ad-item {
   margin: 30rpx 0;
+}
+
+.label-item icon {
+  position: absolute;
+  top: 0rpx;
+  right: 0rpx;
 }

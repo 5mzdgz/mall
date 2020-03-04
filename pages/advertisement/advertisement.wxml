@@ -10,7 +10,7 @@ title="{{navTitle}}"
   <view class="content-top" style="top: {{navHeight}}px;">
     <view class="input-box flex-r">
       <text class="iconfont icon-sousuo"></text>
-      <input bindconfirm="nameSaerchData" name="nameObj" confirm-type="search" type="text" maxlength="30" placeholder='输入搜索关键字' />
+      <input bindconfirm="nameSaerchData" name="nameObj" confirm-type="search" type="text" maxlength="30" placeholder='例: 高铁' />
     </view>
 
     <view class="project-box">
@@ -22,37 +22,26 @@ title="{{navTitle}}"
       </view>
       <view class="popu" wx:if="{{selected>=0}}" bindtap="hidePopuTap"></view>
       <view class="content-box {{selected >=0 ? 'slidown':'slidup'}}">
-          <view class="content-item {{item.checked?'content-checked':''}}" wx:for="{{searchData}}" wx:for-item="item" wx:key="{{index}}" data-index="{{index}}" wx:if="{{selected < 3}}" catchtap="navItemTap">{{item.desc}}</view>
-          <view class="category-box" wx:if="{{selected===3}}">
-            <view class="label">趋向</view>
-            <view class="label-item-box">
-              <view class="label-item" wx:for="{{searchData[0]}}" wx:for-item="item" wx:key="{{index}}" data-index="{{index}}" catchtap="navItemTap">{{item.desc}}</view>
-            </view>
-            <view class="label">标签</view>
-            <view class="label-item-box">
-              <view class="label-item" wx:for="{{searchData[1]}}" wx:for-item="item" wx:key="{{index}}" data-index="{{index}}" catchtap="navItemTap">{{item.desc}}</view>
-            </view>
-            <view class="label">类型</view>
-            <view class="label-item-box">
-              <view class="label-item" wx:for="{{searchData[2]}}" wx:for-item="item" wx:key="{{index}}" data-index="{{index}}" catchtap="navItemTap">{{item.desc}}</view>
-            </view>
+          <view class="content-item" wx:if="{{selected < 5}}" catchtap="calerNavItemTap">不限</view>
+          <view class="content-item {{item.checked?'content-checked':''}}" wx:for="{{searchData}}" wx:for-item="item" wx:key="{{index}}" data-item="{{item}}" wx:if="{{selected < 5}}" catchtap="navItemTap">{{item.desc}}</view>
+          <view class="category-box" wx:if="{{selected===5}}">
+            <block wx:for="{{searchData}}" wx:for-item="searchItem" wx:key="uniue">
+              <view class="label">{{searchItem.labelTitel}}</view>
+              <view class="label-item-box">
+                <view class="label-item {{labelItem.checked?'checked-label-item':''}}" wx:for="{{searchItem.labelArr}}" wx:for-item="labelItem" wx:key="{{labelItem}}" data-item="{{labelItem}}" catchtap="labelItemTap">{{labelItem.desc}}</view>
+              </view>
+            </block>
             <view class="btn-box flex-r">
-              <view class="btn-cancel">不限</view>
-              <view class="btn-confirm">确定</view>
+              <view class="btn-cancel" catchtap="cancelLabelTap">不限</view>
+              <view class="btn-confirm" catchtap="confrimLabelTap">确定</view>
             </view>
           </view>
       </view>
     </view>
   </view>
   <view class="ad-item-box" style="margin-top: {{navHeight + 50}}px;">
-    <view class="ad-item">
-      <image-card class="item-image-card" cardData="{{cardData}}"></image-card>
-    </view>
-    <view class="ad-item">
-      <image-card class="item-image-card" cardData="{{cardData}}"></image-card>
-    </view>
-    <view class="ad-item">
-      <image-card class="item-image-card" cardData="{{cardData}}"></image-card>
+    <view class="ad-item" wx:for="{{searchArr}}" wx:key="unique">
+      <image-card class="item-image-card" cardData="{{item}}"></image-card>
     </view>
   </view>
 </view>

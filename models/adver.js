@@ -46,14 +46,19 @@ class AdverModel extends HTTP {
     })
   }
 
-  searchType() {
+  searchType(obj) {
     return this.request({
       url: '/search/param',
       method: 'POST',
-      data: {
-        page: 1,
-        pageSize: 2
-      }
+      data: obj
+    })
+  }
+
+  adAdd(obj) {
+    return this.request({
+      url: '/ad/adAdd',
+      method: 'POST',
+      data: obj
     })
   }
 

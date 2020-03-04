@@ -16,53 +16,60 @@ title="{{navTitle}}"
       <image-cropper id="image-cropper" upload="true" limit_move="true" disable_ratio="true" disable_rotate="true" width="{{width}}" height="{{height}}" imgSrc="{{src}}" bindload="cropperload" bindimageload="loadimage" bindtapcut="clickcut">
       </image-cropper>
     </view>
-    <form wx:else>
+    <form wx:else bindsubmit='saveRecommendTap'>
       <view class="release">
         <v-cell cellData="{{cellArr[0]}}"></v-cell>
         <view class="input-item flex-r">
           <view class="label">媒体标题</view>
-          <input name="title" placeholder="请输入标题" />
+          <input name="itemName" placeholder="请输入标题" />
         </view>
-         <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+         <picker bindchange="modelPickerChange" value="{{modelType}}" range="{{modelTypeArr}}">
           <view class="input-item flex-r">
             <view class="label">媒体类型</view>
-            <input name="" placeholder="媒体类型" />
+            <input name="modelType" value="{{modelTypeArr[modelType]}}" placeholder="媒体类型" />
             <view class="iconfont icon-xiangyou"></view>
           </view>
         </picker>
         <view class="input-item flex-r">
+          <view class="label">显示时间</view>
+          <input name="adSecond" placeholder="LED屏显示时间" />
+        </view>
+        <view class="input-item flex-r">
           <view class="label">媒体规格</view>
           <view class="input-box flex-r">
             <text class="attr-label">高</text>
-            <input name="" placeholder="例: 50cm、1.8m" />
+            <input name="adHigh" placeholder="例: 50cm、1.8m" />
           </view>
         </view>
         <view class="input-item flex-r">
           <view class="label"></view>
           <view class="input-box flex-r">
             <text class="attr-label">宽</text>
-            <input name="" placeholder="例: 50cm、1.8m" />
+            <input name="adWide" placeholder="例: 50cm、1.8m" />
           </view>
         </view>
         <view class="input-item flex-r">
           <view class="label">媒体位置</view>
-          <input name="title" placeholder="选择省市区" />
+          <input name="addressArea" value="{{region}}" placeholder="选择省市区" disabled="true"/>
           <view class="iconfont icon-ditu-dibiao" catchtap="getLocation"></view>
         </view>
         <view class="input-item flex-r">
           <view class="label">详细地址</view>
-          <input name="" placeholder="详细地址" />
+          <input name="adAddress" value="{{adAddress}}" placeholder="详细地址" />
         </view>
         <view class="input-item flex-r no-border">
           <view class="label">选择标签</view>
           <view class="tips">(最多选择3个)</view>
         </view>
         <view class="label-box b-bottom">
-          <view class="label-item {{item.checked?'selected-item' : ''}}" wx:for="{{labelArr}}" wx:key="index" data-index="{{index}}" catchtap="selectedLabelTap">{{item.labelName}}</view>
+          <view class="label-item {{item.checked?'selected-item' : ''}}" wx:for="{{labelArr}}" wx:key="index" data-index="{{index}}" catchtap="selectedLabelTap">
+            <text>{{item.labelName}}</text>
+            <!-- <icon type="cancel" size="18" color="red"></icon> -->
+          </view>
         </view>
         <view class="desc">
           <view class="label">媒体描述</view>
-          <textarea placeholder="请输入具体描述" />
+          <textarea name="descr" placeholder="请输入具体描述" />
         </view>
         <view class="input-item flex-r no-border">
           <view class="label">媒体照片</view>
@@ -80,34 +87,35 @@ title="{{navTitle}}"
       </view>
       <view class="release">
         <v-cell cellData="{{cellArr[1]}}"></v-cell>
-        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="input-item flex-r">
+          <view class="label">租凭价格</view>
+          <input name="lowPrice" placeholder="最低价格" />
+          <input name="highPrice" placeholder="最低价格" />
+        </view>
+        <picker bindchange="statusPickerChange" value="{{status}}" range="{{statusArray}}">
           <view class="input-item flex-r">
-            <view class="label">租凭类型</view>
-            <input name="title" value="{{array[index]}}" placeholder="租凭类型" />
+            <view class="label">租凭状态</view>
+            <input name="title" value="{{statusArray[status]}}" placeholder="租凭类型" />
             <view class="iconfont icon-xiangyou"></view>
           </view>
         </picker>
-        <view class="input-item flex-r">
-          <view class="label">租凭价格</view>
-          <input name="" placeholder="请输入租凭价格" />
-        </view>
-        <picker mode="date" value="{{date}}" start="2020-01-01" end="2025-12-31" bindchange="bindDateChange">
+        <picker wx:if="{{status==='2'}}" mode="date" value="{{date}}" start="2020-01-01" end="2025-12-31" bindchange="bindDateChange">
           <view class="input-item flex-r">
-            <view class="label">空挡时间</view>
-              <input name="date" value="{{date}}" placeholder="请输入租凭价格" />
+            <view class="label">到期时间</view>
+              <input name="endTimeStr" value="{{date}}" placeholder="请选择时间" />
               <view class="iconfont icon-jilu"></view>
           </view>
         </picker>
         <view class="input-item flex-r">
           <view class="label">联系人</view>
-          <input name="" placeholder="请输入租凭价格" />
+          <input name="contactName" placeholder="请输入联系人" />
         </view>
         <view class="input-item flex-r">
           <view class="label">联系电话</view>
-          <input name="" placeholder="请输入租凭价格" />
+          <input name="contactPhone" placeholder="请输入联系电话" />
         </view>
       </view>
-      <button>确定</button>
+      <button form-type='submit'>确定</button>
     </form>
   </view>
 </view>

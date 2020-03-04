@@ -11,8 +11,7 @@
         <view class="sub">{{cardData.adTypeEntity.typeName}}</view>
       </view>
       <view class="label-box flex-r">
-        <view class="label-item">搞得</view>
-        <view class="label-item">搞得</view>
+        <view class="label-item" wx:for="{{cardData.adLabelEntityList}}" wx:key="unique">{{item.labelName}}</view>
       </view>
       <view class="attribute flex-r">
         <view class="attr-item">

@@ -4,7 +4,7 @@
 
 <view class="container">
   <view class="sticky-box">
-    <v-sticky navbarInitTop="{{navbarInitTop}}" isFixedTop="{{isFixedTop}}"></v-sticky>
+    <v-sticky bindmyevent="navCall" id="sticky" navbarInitTop="{{navbarInitTop}}" navArr="{{navArr}}" isFixedTop="{{isFixedTop}}"></v-sticky>
   </view>
   <product-list productList="{{productList}}"></product-list>
 </view>

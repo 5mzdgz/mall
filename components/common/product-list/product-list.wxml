@@ -3,37 +3,37 @@
   <view class="product-item" wx:for="{{productList}}" wx:key="index">
     <view class="top-box flex-r">
       <text class="time">{{item.createTime}}</text>
-      <text class="status">待审核</text>
+      <text class="status {{item.checkStatus === 1?'status-yi':'status-wei'}}">{{item.checkStatusName}}</text>
     </view>
     <view class="product-content flex-r">
-      <view class="img-box">
-        <image src="{{item.productImg}}"></image>
+      <view class="img-box flex-c">
+        <image mode='widthFix' src="{{item.imageUrlList[0]}}"></image>
       </view>
       <view class="product-box">
-        <view><text class="product-name">{{item.itemName}}</text><text class="sub-title">{{}}</text></view>
+        <view><text class="product-name">{{item.itemName}}</text><text class="sub-title">{{item.adTypeEntity.typeName}}</text></view>
         <view class="rent-type flex-r">
-          <view class="type-item">街道</view>
-          <view class="type-item">人流量</view>
+          <view class="type-item" wx:for="{{item.adLabelEntityList}}" wx:for-item="labelItem" wx:key="item.labelId">{{labelItem.labelName}}</view>
         </view>
         <view class="attrs flex-r">
           <view class="attrs-item">
             <text class="label">高 </text>
-            <text class="count">80</text>
+            <text class="count">{{item.adHigh}}</text>
             <text class="unit">cm</text>
           </view>
           <view class="attrs-item">
             <text class="label">高 </text>
-            <text class="count">80</text>
+            <text class="count">{{item.adWide}}</text>
             <text class="unit">cm</text>
           </view>
         </view>
         <view class="price-box">
-          <text class="price">￥{{item.price}}</text>
+          <text class="price">￥{{item.adPriceEntity.lowPrice}}-{{item.adPriceEntity.highPrice}}</text>
           <text class="unit">{{item.unit}}</text>
         </view>
       </view>
     </view>
     <view class="btn flex-r">
+    <view class="btn-item">下架</view>
       <view class="btn-item">重新编辑</view>
       <view class="btn-item">删除</view>
     </view>

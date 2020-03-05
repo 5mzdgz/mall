@@ -70,6 +70,14 @@ class AdverModel extends HTTP {
     })
   }
 
+  companyAdd(obj) {
+    return this.request({
+      url: '/company/add',
+      method: 'POST',
+      data: obj
+    })
+  }
+
 }
 
 

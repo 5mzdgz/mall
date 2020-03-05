@@ -15,9 +15,31 @@ Page({
     isFixedTop: false, //是否固定顶部
     obj: {
       page: 1,
-      pageSize: 5
+      pageSize: 10
     },
-    productList: []
+    productList: [],
+    navArr: [
+      {
+        checkStatus: 0,
+        navName: '全部',
+        icon: ''
+      },
+      {
+        checkStatus: 1,
+        navName: '已通过',
+        icon: ''
+      },
+      {
+        checkStatus: 2,
+        navName: '待审核',
+        icon: ''
+      },
+      {
+        checkStatus: 3,
+        navName: '未通过',
+        icon: ''
+      }
+    ]
   },
 
   /**
@@ -27,11 +49,40 @@ Page({
     this.getAdStatusList(this.data.obj)
   },
 
+  navCall: function(e) {
+    let obj = this.data.obj;
+    if (e.detail.navItem) {
+      obj.checkStatus = e.detail.navItem;
+    } else {
+      obj = {
+        page: 1,
+        pageSize: 10
+      }
+    }
+    this.getAdStatusList(obj);
+  },
+
   getAdStatusList: function (obj) {
     adverModel.adStatusList(obj).then(res => {
       console.log(res)
+      const productList = res.data.records
+      if (productList.length > 0) {
+        productList.forEach(item => {
+          switch (item.checkStatus) {
+            case 1:
+              item.checkStatusName = '已通过'
+            break;
+            case 2:
+              item.checkStatusName = '待审核'
+            break;
+            case 3:
+              item.checkStatusName = '未通过'
+            break;
+          }
+        })
+      }
       this.setData({
-        productList: res.data.records
+        productList: productList
       })
     })
   },
@@ -48,7 +99,7 @@ Page({
     if (that.data.isFixedTop === isSatisfy) {
       return false;
     }
-    console.log(isSatisfy)
+    // console.log(isSatisfy)
     that.setData({
       isFixedTop: isSatisfy
     });
@@ -58,7 +109,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.navSticky = this.selectComponent('#sticky');
   },
 
   /**

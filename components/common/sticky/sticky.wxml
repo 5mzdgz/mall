@@ -2,7 +2,7 @@
 <view class="sticky-box">
   <view class="navbar-wrap">
     <view class="column {{isFixedTop?'fixed':''}}" style="top:{{navbarInitTop}}px">
-      <view class="block {{index === seleted - 1?'active':''}}" wx:for="{{navArr}}" data-item="{{item}}" catchtap="selectedNav" wx:key="index">{{item.navName}}<text class="iconfont {{item.icon}}"></text></view>
+      <view class="block {{index === seleted?'active':''}}" wx:for="{{navArr}}" data-item="{{item}}" catchtap="selectedNav" wx:key="index">{{item.navName}}<text class="iconfont {{item.icon}}"></text></view>
     </view>
     <!-- 用于吸顶后 占位用的 -->
     <view class="column" wx:if="{{isFixedTop}}"></view>

@@ -7,37 +7,45 @@
     <view class="release">
       <view class="input-item flex-r">
         <view class="label">公司名称</view>
-        <input name="title" placeholder="公司名称" />
+        <input name="companyName" placeholder="公司名称" />
       </view>
       <view class="input-item flex-r">
         <view class="label">营业执照号</view>
-        <input name="" placeholder="请输入营业执照号" />
+        <input name="companyCode" placeholder="请输入营业执照号" />
       </view>
       <view class="input-item flex-r">
         <view class="label">公司地址</view>
-        <input name="" placeholder="请输入公司地址" />
-      </view>
-      <view class="input-item flex-r">
-        <view class="label">联系电话</view>
-        <input name="" placeholder="请输入联系电话" />
+        <input name="companyAddress" value="{{companyAddress}}" placeholder="请输入公司地址" />
+        <view class="iconfont icon-ditu-dibiao" catchtap="getLocation"></view>
       </view>
       <view class="input-item flex-r">
         <view class="label">联系人</view>
-        <input name="" placeholder="请输入联系人" />
+        <input name="companyContact" placeholder="请输入联系人" />
+      </view>
+      <view class="input-item flex-r">
+        <view class="label">联系电话</view>
+        <input name="contactPhone" placeholder="请输入联系电话" />
       </view>
       <view class="input-item flex-r">
         <view class="label">法人姓名</view>
-        <input name="" placeholder="请输入法人姓名" />
+        <input name="companyFaren" placeholder="请输入法人姓名" />
       </view>
       <view class="input-item flex-r">
         <view class="label">法人身份证号</view>
-        <input name="" placeholder="请输入法人身份证号" />
+        <input name="companyFarenId" placeholder="请输入法人身份证号" />
+      </view>
+      <view class="desc">
+        <view class="label">备注</view>
+        <textarea name="mark" placeholder="请输入具体备注" />
       </view>
       <view class="input-item flex-r no-border">
         <view class="label">营业执照</view>
       </view>
       <view class="img-box">
-        <image mode="widthFix" src="/images/common/ad_banner2.png" />
+        <image mode="widthFix" src="{{tempFilePaths}}" catchtap="shagnchuangImg" />
+        <view class="add-img" wx:if="{{!tempFilePaths}}" catchtap="shagnchuangImg">
+            <text class="iconfont icon-jia"></text>
+          </view>
       </view>
     </view>
     <button form-type='submit'>确定</button>

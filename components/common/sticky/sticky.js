@@ -7,6 +7,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    navArr: {
+      type: Array,
+      value: []
+    },
     navbarInitTop: {
       type: String,
       value: '0'
@@ -22,29 +26,7 @@ Component({
    */
   data: {
     seleted: 0,
-    isDown: false,
-    navArr: [
-      {
-        type: 1,
-        navName: '默认排序',
-        icon: 'icon-xiangyou'
-      },
-      {
-        type: 2,
-        navName: '默认排序',
-        icon: ''
-      },
-      {
-        type: 3,
-        navName: '默认排序',
-        icon: ''
-      },
-      {
-        type: 4,
-        navName: '默认排序',
-        icon: 'icon-xiangyou'
-      }
-    ]
+    isDown: false
   },
   pageLifetimes: {
     show: function () {
@@ -62,11 +44,16 @@ Component({
    */
   methods: {
     selectedNav(e) {
-      console.log(e);
+      // console.log(e);
       const item = e.currentTarget.dataset.item;
       this.setData({
-        seleted: item.type
+        seleted: item.checkStatus
       })
+      let myEventDetail = {
+        navItem: item.checkStatus
+      }
+      let myEventOption = {}
+      this.triggerEvent('myevent', myEventDetail, myEventOption)
     }
   }
 })

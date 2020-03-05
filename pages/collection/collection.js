@@ -1,4 +1,8 @@
 // pages/Collection/Collection.js
+import { config } from '../../config.js';
+import { AdverModel } from '../../models/adver.js';
+const adverModel = new AdverModel();
+const app = getApp();
 Page({
 
   /**
@@ -7,43 +11,49 @@ Page({
   data: {
     showIcon: true,
     navTitle: '收藏',
-    cardData: {
-      type: 1,
-      height: 324,
-      imageUrl: '/images/common/ad_banner2.png',
-      title: '金难大道南',
-      subArr: ['路口', '高杆'],
-      isColletion: 1,
-      attrArr: [
-        {
-          label: '高',
-          number: 80,
-          unit: 'm'
-        },
-        {
-          label: '长',
-          number: 80,
-          unit: 'm'
-        },
-        {
-          label: '宽',
-          number: 80,
-          unit: 'm'
-        }
-      ],
-      rightText: '咨询',
-      icon: 'icon-xiangyou',
-      price: 2000,
-      unit: '元/月',
-      videoUrl: null,
-    }
+    obj: {
+      page: 1,
+      pageSize: 5
+    },
+    collectArr: [] 
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getCollectList(this.data.obj);
+  },
 
+  getCollectList: function (obj) {
+    adverModel.collectList(obj).then(res => {
+      console.log(res)
+      res.data.records.forEach(item => {
+        item.height = 324
+        item.icon = 'icon-dianhuazixun'
+        item.rightText = '咨询'
+        item.isColletion = true
+      })
+      this.setData({
+        collectArr: res.data.records
+      })
+    })
+  },
+
+  canecl:function(e) {
+    let collectArr = this.data.collectArr;
+    let itemIds = e.detail.itemId
+    console.log(itemIds)
+    adverModel.cancelCollect(itemIds).then(res => {
+      if(res.code === 200) {
+        const filterArr = collectArr.filter(item => {
+          return item.itemId != itemIds
+        })
+        this.setData({
+          collectArr: filterArr
+        })
+      }
+    })
   },
 
   /**

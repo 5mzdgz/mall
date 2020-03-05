@@ -1,7 +1,7 @@
 <!--components/detail/tabbar/tabbar.wxml-->
 <view class="tabbar-box flex-r">
-  <view class="collection flex-c">
-    <text class="iconfont icon-iconfontxihuan"></text>
+  <view class="collection flex-c" bindtap="addCollectionTap">
+    <text class="iconfont {{isCollection?'icon-xin':'icon-iconfontxihuan'}}"></text>
     <text class="title">收藏</text>
   </view>
   <view class="phone">

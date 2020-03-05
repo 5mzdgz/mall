@@ -1,5 +1,5 @@
 <!--components/common/image-card/image-card.wxml-->
-<view class="image-card" bindtap="goAdverTap">
+<view class="image-card" data-itemId="{{cardData.itemId}}" bindtap="goAdverTap">
   <view class="image-box" style="height: {{cardData.height}}rpx;">
     <image wx:if="{{!cardData.videoUrl}}" src="{{cardData.imageUrlList[0]}}"></image>
     <video wx:if="{{cardData.videoUrl}}" src="{{cardData.videoUrl}}" poster='{{cardData.imageUrlList[0]}}' enable-danmu="{{false}}" danmu-btn="{{false}}" controls object-fit="cover" bindplay='bindplay' bindpause='bindpause' bindended='bindend' bindtimeupdate="bindtimeupdate"></video>
@@ -31,7 +31,7 @@
     <view class="right-box">
       <view class="icon"><text class="iconfont {{cardData.icon}}"></text></view>
       <view class="iconname">{{cardData.rightText}}</view>
-      <view class="collection" wx:if="{{cardData.isColletion === 1}}" catchtap="caneclCollection">取消收藏</view>
+      <view class="collection" wx:if="{{cardData.isColletion}}" data-itemId="{{cardData.itemId}}" catchtap="caneclCollection">取消收藏</view>
     </view>
   </view>
 </view>

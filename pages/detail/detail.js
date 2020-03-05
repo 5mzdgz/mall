@@ -46,18 +46,37 @@ Page({
     longitude: '',
     latitude: '',
     scale: 15,
-    markers: []
+    markers: [],
+    isCollection: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getDetailData();
+    this.data.itemId = options.itemId;
+    console.log(options.itemId);
+    this.getDetailData(options.itemId);
     // this.getCurrentLL();
+    this.getCollectSearch(options.itemId);
   },
-  getDetailData:function() {
-    adverModel.adverDetail().then(res => {
+
+  getCollectSearch: function (itemId) {
+    adverModel.collectSearch(itemId).then(res => {
+      console.log(res)
+      if (res.code === 40006) {
+        this.setData({
+          isCollection: false
+        })
+      } else {
+        this.setData({
+          isCollection: true
+        })
+      }
+    })
+  },
+  getDetailData: function (itemId) {
+    adverModel.adverDetail(itemId).then(res => {
       const detailData = res.data;
       console.log(res)
       detailData.height = 353
@@ -74,7 +93,7 @@ Page({
         const obj = { imageUrl: item };
         arr.push(obj)
       })
-      console.log(arr)
+      // console.log(arr)
       detailData.swiperArr = arr
       this.setData({
         detailData: detailData,

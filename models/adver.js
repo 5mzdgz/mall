@@ -28,12 +28,12 @@ class AdverModel extends HTTP {
     })
   }
 
-  adverDetail() {
+  adverDetail(itemId) {
     return this.request({
       url: '/ad/detail',
       method: 'POST',
       data: {
-        itemId: 1,
+        itemId: itemId,
         userId: 2
       }
     })
@@ -62,6 +62,14 @@ class AdverModel extends HTTP {
     })
   }
 
+  updateMine(obj) {
+    return this.request({
+      url: '/ad/updateMine',
+      method: 'POST',
+      data: obj
+    })
+  }
+
   adStatusList(obj) {
     return this.request({
       url: '/ad/adStatusList',
@@ -75,6 +83,45 @@ class AdverModel extends HTTP {
       url: '/company/add',
       method: 'POST',
       data: obj
+    })
+  }
+
+  addCollect(itemId) {
+    return this.request({
+      url: '/ad/addCollect',
+      method: 'POST',
+      data: {
+        itemId: itemId
+      }
+    })
+  }
+
+  collectList(obj) {
+    console.log(obj)
+    return this.request({
+      url: '/ad/meCollect',
+      method: 'POST',
+      data: obj
+    })
+  }
+
+  cancelCollect(itemId) {
+    return this.request({
+      url: '/ad/cancelCollect',
+      method: 'POST',
+      data: {
+        itemId: itemId
+      }
+    })
+  }
+
+  collectSearch(itemId) {
+    return this.request({
+      url: '/ad/collectSearch',
+      method: 'POST',
+      data: {
+        itemId: itemId
+      }
     })
   }
 

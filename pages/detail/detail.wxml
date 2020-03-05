@@ -23,5 +23,5 @@ title="{{navTitle}}"
     <map id="myMap" class="maMap" longitude="{{detailData.longitude}}" latitude="{{detailData.latitude}}" scale="{{scale}}" markers="{{markers}}" subkey="{{subkey}}" />
   </view>
   
-  <v-tabbar></v-tabbar>
+  <v-tabbar detailData="{{detailData}}" isCollection="{{isCollection}}"></v-tabbar>
 </view>

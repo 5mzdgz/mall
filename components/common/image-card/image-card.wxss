@@ -39,6 +39,7 @@
 .title-box .title {
   font-size: 30rpx;
   font-weight: bold;
+  width: 350rpx;
 }
 
 .label-item {

@@ -1,4 +1,6 @@
 // components/common/image-card/image-card.js
+import { AdverModel } from '../../../models/adver.js';
+const adverModel = new AdverModel();
 Component({
   options: {
     addGlobalClass: true,
@@ -46,13 +48,20 @@ Component({
       // console.log(res)//查看正在播放相关变量
       // console.log("播放到第" + res.detail.currentTime + "秒")//查看正在播放时间，以秒为单位
     },
-    goAdverTap() {
+    goAdverTap(e) {
+      console.log(e)
       wx.navigateTo({
-        url: '/pages/detail/detail',
+        url: '/pages/detail/detail?itemId=' + e.currentTarget.dataset.itemid,
       })
     },
-    caneclCollection() {
-      
+    caneclCollection(e) {
+      console.log(e)
+      const itemId = e.currentTarget.dataset.itemid;
+      let myEventDetail = {
+        itemId: itemId
+      }
+      let myEventOption = {}
+      this.triggerEvent('myevent', myEventDetail, myEventOption)
     }
   }
 })

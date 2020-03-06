@@ -19,7 +19,9 @@ Page({
     latitude: '',
     longitude: '',
     labelId: '',
+    modelAreaArr: [],
     typeEntityList:[],
+    areaEntityList: [],
     modelTypeArr: [],
     labelArr: [],
     status: '0',
@@ -44,26 +46,39 @@ Page({
         rightSub: '',
         pageUrl: ''
       }
-    ]
+    ],
+    releaseData: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.cropper = this.selectComponent("#image-cropper");
-    this.getNavArr();
+    console.log(JSON.parse(options.releaseData))
+    let releaseData = null;
+    if (options.releaseData) {
+      releaseData = JSON.parse(options.releaseData);
+      this.setData({
+        releaseData: releaseData
+      })
+    }
+    this.getNavArr(releaseData);
   },
 
-  
-
   saveRecommendTap: function(e) {
-    let typeId;
+    let typeId, areaId;
     const modelType = e.detail.value.modelType;
+    const modelArea = e.detail.value.modelArea;
     console.log(modelType);
     this.data.typeEntityList.forEach(item => {
       if (modelType === item.typeName) {
         typeId = item.typeId
+      }
+    })
+
+    this.data.areaEntityList.forEach(item => {
+      if (modelArea === item.areaName) {
+        areaId = item.areaId
       }
     })
     
@@ -83,6 +98,7 @@ Page({
       adWide: value.adWide,
       imageUrl: '',
       typeId: typeId,
+      areaId: areaId,
       labelId: this.data.labelId,
       latitude: this.data.latitude,
       longitude: this.data.longitude,
@@ -98,7 +114,7 @@ Page({
       url: config.api_base_url + '/upload/file',//这里是你图片上传的接
       path: this.data.imagePathArr,//这里是选取的图片的地址数组
     }
-    let uploadImages = [];
+    let uploadImages;
     this.uploadimg(data, uploadImages, obj, this);
   },
 
@@ -305,31 +321,100 @@ Page({
     })
   },
 
-  getNavArr: function () {
+  getNavArr: function (releaseData) {
     adverModel.navArr().then(res => {
       console.log(res)
+      const modelAreaArr = this.data.modelAreaArr;
       const modelTypeArr = this.data.modelTypeArr;
-      const labelArr = this.data.labelArr;
+      let labelArr = this.data.labelArr;
       res.data.typeEntityList.forEach(item => {
         modelTypeArr.push(item.typeName)
+      })
+      res.data.areaEntityList.forEach(item => {
+        modelAreaArr.push(item.areaName)
       })
       res.data.labelEntityList.forEach(item => {
         item.checked = false
         labelArr.push(item)
       })
+      
       this.setData({
         typeEntityList: res.data.typeEntityList,
+        areaEntityList: res.data.areaEntityList,
+        modelAreaArr: modelAreaArr,
         modelTypeArr: modelTypeArr,
         labelArr: labelArr
       })
-     
+      console.log(releaseData.adLabelEntityList)
+      if (releaseData) {
+        labelArr.forEach(items => {
+          releaseData.adLabelEntityList.forEach(item => {
+            if (item.labelName === items.labelName) {
+              items.checked = true
+            }
+          })
+        })
+
+        this.setData({
+          labelArr: labelArr
+        })
+
+        for (let i = 0; i < modelTypeArr.length; i++) {
+          if (releaseData.adTypeEntity.typeName === modelTypeArr[i]) {
+            this.setData({
+              modelType: i
+            })
+          }
+        }
+
+        for (let i = 0; i < modelTypeArr.length; i++) {
+          if (releaseData.adAreaEntityList.areaName === modelAreaArr[i]) {
+            this.setData({
+              modelArea: i
+            })
+          }
+        }
+
+        let str = '', labelId;
+        releaseData.adLabelEntityList.forEach(item => {
+          str += item.labelId + ','
+        })
+        labelId = str.substring(0, str.length - 1);
+        
+        this.setData({
+          adAddress: releaseData.adAddress,
+          itemName: releaseData.itemName,
+          adSecond: releaseData.adSecond ? releaseData.adSecond : null,
+          descr: releaseData.descr,
+          adHigh: releaseData.adHigh,
+          adWide: releaseData.adWide,
+          imagePathArr: releaseData.imageUrlList,
+          // typeId:
+          // areaId:
+          // imageUrl:
+          labelId: labelId,
+          latitude: releaseData.latitude,
+          longitude: releaseData.longitude,
+          lowPrice: releaseData.adPriceEntity.lowPrice,
+          highPrice: releaseData.adPriceEntity.highPrice,
+          status: releaseData.status,
+          contactName: releaseData.adLeaseEntity.contactName,
+          contactPhone: releaseData.adLeaseEntity.contactPhone,
+          endTimeStr: releaseData.endTime
+        })
+      }
     })
   },
 
   modelPickerChange:function(e) {
-    console.log(e)
+    console.log(e.detail.value)
     this.setData({
       modelType: e.detail.value
+    })
+  },
+  areaPickerChange: function(e) {
+    this.setData({
+      modelArea: e.detail.value
     })
   },
   bindDateChange: function(e) {
@@ -366,12 +451,28 @@ Page({
         const resData = JSON.parse(res.data)
         console.log(res)
         if (i == 0 || i === 0) {
-          uploadImages = resData.date
+          that.data.imagePathArr.forEach(item => {
+            if (item.indexOf('https') >= 0) {
+              uploadImages += resData.date + "," + item
+              console.log(1111)
+            } else {
+              uploadImages = resData.date
+            }
+          })
         } else {
-          uploadImages = uploadImages + "," + resData.date;
+          that.data.imagePathArr.forEach(item => {
+            if (item.indexOf('https') >= 0) {
+              uploadImages += uploadImages + "," + resData.date + "," + item
+            } else {
+              uploadImages = uploadImages + "," + resData.date;
+            }
+          })
         }
+        console.log(1111)
         console.log(uploadImages)
-        obj.imageUrl = uploadImages
+        if (uploadImages) {
+          obj.imageUrl = uploadImages
+        }
         success++;
         // console.log(i);
         //这里可能有BUG，失败也会执行这里
@@ -384,6 +485,11 @@ Page({
         // console.log(i);
         i++;
         if (i == data.path.length) {   //当图片传完时，停止调用
+          if (!obj.imageUrl) {
+            that.data.imagePathArr.forEach(item => {
+              obj.imageUrl += item + ','
+            })
+          }
           that.saveRelease(obj)
           // console.log(uploadImages);
           // console.log('执行完毕');
@@ -412,7 +518,13 @@ Page({
         }
       }
     }
-    adverModel.adAdd(obj).then(res => {
+    let url = '/ad/adAdd'
+    if (this.data.releaseData) {
+      url = '/ad/updateMine'
+      obj.itemId = this.data.releaseData.itemId
+    }
+
+    adverModel.adAdd(url, obj).then(res => {
       console.log(res)
       wx.navigateTo({
         url: '../record/record',
@@ -421,51 +533,9 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
 })

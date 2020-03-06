@@ -21,41 +21,49 @@ title="{{navTitle}}"
         <v-cell cellData="{{cellArr[0]}}"></v-cell>
         <view class="input-item flex-r">
           <view class="label">媒体标题</view>
-          <input name="itemName" placeholder="请输入标题" />
+          <input name="itemName" value="{{itemName}}" placeholder="请输入标题" />
         </view>
-         <picker bindchange="modelPickerChange" value="{{modelType}}" range="{{modelTypeArr}}">
+        <picker bindchange="modelPickerChange" value="{{modelType}}" range="{{modelTypeArr}}">
           <view class="input-item flex-r">
             <view class="label">媒体类型</view>
             <input name="modelType" value="{{modelTypeArr[modelType]}}" placeholder="媒体类型" />
             <view class="iconfont icon-xiangyou"></view>
           </view>
         </picker>
+        <picker bindchange="areaPickerChange" value="{{modelArea}}" range="{{modelAreaArr}}">
+          <view class="input-item flex-r">
+            <view class="label">媒体区域</view>
+            <input name="modelArea" value="{{modelAreaArr[modelArea]}}" placeholder="请选择媒体区域" />
+            <view class="iconfont icon-xiangyou"></view>
+          </view>
+        </picker>
         <view class="input-item flex-r" wx:if="{{modelType === '11'}}">
           <view class="label">显示时间</view>
-          <input name="adSecond" placeholder="LED屏显示时间,秒为单位" />
+          <input name="adSecond" value="{{adSecond}}" placeholder="LED屏显示时间,秒为单位" />
         </view>
         <view class="input-item flex-r">
           <view class="label">媒体规格</view>
           <view class="input-box flex-r">
             <text class="attr-label">高</text>
-            <input name="adHigh" placeholder="例: 50cm、1.8m" />
+            <input name="adHigh" value="{{adHigh}}" placeholder="例: 50cm、1.8m" />
           </view>
         </view>
         <view class="input-item flex-r">
           <view class="label"></view>
           <view class="input-box flex-r">
             <text class="attr-label">宽</text>
-            <input name="adWide" placeholder="例: 50cm、1.8m" />
+            <input name="adWide" value="{{adWide}}" placeholder="例: 50cm、1.8m" />
           </view>
         </view>
-        <view class="input-item flex-r">
+        <!-- <view class="input-item flex-r">
           <view class="label">媒体位置</view>
           <input name="addressArea" value="{{region}}" placeholder="选择省市区" disabled="true"/>
           <view class="iconfont icon-ditu-dibiao" catchtap="getLocation"></view>
-        </view>
+        </view> -->
         <view class="input-item flex-r">
           <view class="label">详细地址</view>
           <input name="adAddress" value="{{adAddress}}" placeholder="详细地址" />
+          <view class="iconfont icon-ditu-dibiao" catchtap="getLocation"></view>
         </view>
         <view class="input-item flex-r no-border">
           <view class="label">选择标签</view>
@@ -68,7 +76,7 @@ title="{{navTitle}}"
         </view>
         <view class="desc">
           <view class="label">媒体描述</view>
-          <textarea name="descr" placeholder="请输入具体描述" />
+          <textarea name="descr" value="{{descr}}" placeholder="请输入具体描述" />
         </view>
         <view class="input-item flex-r no-border">
           <view class="label">媒体照片</view>
@@ -88,13 +96,13 @@ title="{{navTitle}}"
         <v-cell cellData="{{cellArr[1]}}"></v-cell>
         <view class="input-item flex-r">
           <view class="label">租凭价格</view>
-          <input name="lowPrice" placeholder="最低价格" />
-          <input name="highPrice" placeholder="最低价格" />
+          <input name="lowPrice" value="{{lowPrice}}" placeholder="最低价格" />
+          <input name="highPrice" value="{{highPrice}}" placeholder="最低价格" />
         </view>
         <picker bindchange="statusPickerChange" value="{{status}}" range="{{statusArray}}">
           <view class="input-item flex-r">
             <view class="label">租凭状态</view>
-            <input name="title" value="{{statusArray[status]}}" placeholder="租凭类型" />
+            <input name="status" value="{{statusArray[status]}}" placeholder="租凭类型" />
             <view class="iconfont icon-xiangyou"></view>
           </view>
         </picker>
@@ -107,11 +115,11 @@ title="{{navTitle}}"
         </picker>
         <view class="input-item flex-r">
           <view class="label">联系人</view>
-          <input name="contactName" placeholder="请输入联系人" />
+          <input name="contactName" value="{{contactName}}" placeholder="请输入联系人" />
         </view>
         <view class="input-item flex-r">
           <view class="label">联系电话</view>
-          <input name="contactPhone" placeholder="请输入联系电话" />
+          <input name="contactPhone" value="{{contactPhone}}" placeholder="请输入联系电话" />
         </view>
       </view>
       <button form-type='submit'>确定</button>

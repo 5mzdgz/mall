@@ -14,6 +14,7 @@ Page({
     navbarInitTop: app.globalData.navHeight, //导航栏初始化距顶部的距离
     isFixedTop: false, //是否固定顶部
     obj: {
+      checkStatus: -1,
       page: 1,
       pageSize: 10
     },
@@ -48,13 +49,19 @@ Page({
   onLoad: function (options) {
     this.getAdStatusList(this.data.obj)
   },
-
+  /**
+   * 点击导航
+   */
   navCall: function(e) {
     let obj = this.data.obj;
     if (e.detail.navItem) {
       obj.checkStatus = e.detail.navItem;
+      if (e.detail.navItem === 1) {
+        obj.checkStatus = 4
+      }
     } else {
       obj = {
+        checkStatus: -1,
         page: 1,
         pageSize: 10
       }
@@ -70,13 +77,16 @@ Page({
         productList.forEach(item => {
           switch (item.checkStatus) {
             case 1:
-              item.checkStatusName = '已通过'
+              item.checkStatusName = '已审核'
             break;
             case 2:
               item.checkStatusName = '待审核'
             break;
             case 3:
               item.checkStatusName = '未通过'
+            break;
+            case 4:
+              item.checkStatusName = '已通过'
             break;
           }
         })

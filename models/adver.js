@@ -54,9 +54,9 @@ class AdverModel extends HTTP {
     })
   }
 
-  adAdd(obj) {
+  adAdd(url, obj) {
     return this.request({
-      url: '/ad/adAdd',
+      url: url,
       method: 'POST',
       data: obj
     })
@@ -122,6 +122,14 @@ class AdverModel extends HTTP {
       data: {
         itemId: itemId
       }
+    })
+  }
+
+  updateAd(obj) {
+    return this.request({
+      url: '/ad/updateAd',
+      method: 'POST',
+      data: obj
     })
   }
 

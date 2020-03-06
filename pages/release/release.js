@@ -15,6 +15,7 @@ Page({
     width: 375,//宽度
     height: 175,//高度  
     isUqloadImg: false,
+    src: '',
     date: '',
     latitude: '',
     longitude: '',
@@ -54,7 +55,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(JSON.parse(options.releaseData))
+    // console.log(JSON.parse(options.releaseData))
     let releaseData = null;
     if (options.releaseData) {
       releaseData = JSON.parse(options.releaseData);
@@ -66,6 +67,9 @@ Page({
   },
 
   saveRecommendTap: function(e) {
+    wx.showLoading({
+      title: '正在上传中...',
+    })
     let typeId, areaId;
     const modelType = e.detail.value.modelType;
     const modelArea = e.detail.value.modelArea;
@@ -107,15 +111,19 @@ Page({
       status: this.data.status,
       contactName: value.contactName,
       contactPhone: value.contactPhone,
-      endTimeStr: value.endTimeStr
+      endTimeStr: value.endTimeStr,
+      videoUrl: ''
     }
+
     console.log(obj)
     let data = {
       url: config.api_base_url + '/upload/file',//这里是你图片上传的接
       path: this.data.imagePathArr,//这里是选取的图片的地址数组
     }
     let uploadImages;
-    this.uploadimg(data, uploadImages, obj, this);
+    if (data.path.length > 0) {
+      this.uploadimg(data, uploadImages, obj);
+    }
   },
 
   showModel: function() {
@@ -345,7 +353,7 @@ Page({
         modelTypeArr: modelTypeArr,
         labelArr: labelArr
       })
-      console.log(releaseData.adLabelEntityList)
+      // console.log(releaseData.adLabelEntityList)
       if (releaseData) {
         labelArr.forEach(items => {
           releaseData.adLabelEntityList.forEach(item => {
@@ -380,7 +388,10 @@ Page({
           str += item.labelId + ','
         })
         labelId = str.substring(0, str.length - 1);
-        
+        const imageUrlList = releaseData.imageUrlList.filter(item => {
+          return item.indexOf('undefined') < 0
+        })
+        console.log(imageUrlList)
         this.setData({
           adAddress: releaseData.adAddress,
           itemName: releaseData.itemName,
@@ -388,7 +399,7 @@ Page({
           descr: releaseData.descr,
           adHigh: releaseData.adHigh,
           adWide: releaseData.adWide,
-          imagePathArr: releaseData.imageUrlList,
+          imagePathArr: imageUrlList,
           // typeId:
           // areaId:
           // imageUrl:
@@ -403,6 +414,65 @@ Page({
           endTimeStr: releaseData.endTime
         })
       }
+    })
+  },
+
+  shagnchuangVideo: function() {
+    var that = this
+    wx.chooseVideo({
+      success: function (res) {
+        console.log(res)
+        if (res.size > 2000000) {
+          wx.showToast({
+            icon: 'none',
+            title: '视频大小不能超过20M',
+          })
+        } else {
+          that.setData({
+            src: res.tempFilePath,
+          })
+        }
+      }
+    })
+  },
+
+  getVideoUrl: function (callback) {
+    const params = {
+      url: config.api_base_url + '/upload/file',
+      src: this.data.src,
+      sCallback: function (data) {
+        callback && callback(data);
+      }
+    }
+    this.uploadvideo(params)
+  },
+
+  //上传视频 目前后台限制最大100M，以后如果视频太大可以在选择视频的时候进行压缩
+  uploadvideo: function (params) {
+    wx.uploadFile({
+      url: params.url,//服务器接口
+      method: 'POST',//这句话好像可以不用
+      filePath: params.src,
+      header: {
+        'content-type': 'multipart/form-data',
+        'Authorization': wx.getStorageSync('loginToken')
+      },
+      name: 'file',
+      formData: null,//服务器定义的Key值
+      success: function (res) {
+        console.log(res)
+        console.log('视频上传成功')
+        params.sCallback && params.sCallback(res.data);
+      },
+      fail: function () {
+        console.log('接口调用失败')
+      }
+    })
+  },
+
+  cancelVideoItem: function() {
+    this.setData({
+      src: ''
     })
   },
 
@@ -452,19 +522,29 @@ Page({
         console.log(res)
         if (i == 0 || i === 0) {
           that.data.imagePathArr.forEach(item => {
+            console.log(item)
             if (item.indexOf('https') >= 0) {
+              console.log(uploadImages)
               uploadImages += resData.date + "," + item
               console.log(1111)
             } else {
+              console.log(uploadImages)
               uploadImages = resData.date
             }
           })
         } else {
           that.data.imagePathArr.forEach(item => {
+            console.log(item)
             if (item.indexOf('https') >= 0) {
-              uploadImages += uploadImages + "," + resData.date + "," + item
+              console.log(uploadImages)
+              if (uploadImages) {
+                uploadImages += uploadImages + "," + resData.date + "," + item
+              }
             } else {
-              uploadImages = uploadImages + "," + resData.date;
+              console.log(uploadImages)
+              if (uploadImages) {
+                uploadImages = uploadImages + "," + resData.date;
+              }
             }
           })
         }
@@ -489,6 +569,7 @@ Page({
             that.data.imagePathArr.forEach(item => {
               obj.imageUrl += item + ','
             })
+            obj.imageUrl = obj.imageUrl.substring(0, obj.imageUrl.length - 1);
           }
           that.saveRelease(obj)
           // console.log(uploadImages);
@@ -507,27 +588,33 @@ Page({
 
   saveRelease: function(obj) {
     console.log(obj)
-    for (let key in obj) {
-      if (key != 'adSecond' && key != 'endTimeStr') {
-        if(!obj[key]) {
-          wx.showToast({
-            title: '请完成必填项',
-            icon: 'none'
-          })
-          return;
+    this.getVideoUrl((data) => {
+      console.log(data)
+      const videoUrl = JSON.parse(data).date
+      obj.videoUrl = videoUrl
+      for (let key in obj) {
+        if (key != 'adSecond' && key != 'videoUrl' && key != 'endTimeStr') {
+          if (!obj[key]) {
+            wx.showToast({
+              title: '请完成必填项',
+              icon: 'none'
+            })
+            return;
+          }
         }
       }
-    }
-    let url = '/ad/adAdd'
-    if (this.data.releaseData) {
-      url = '/ad/updateMine'
-      obj.itemId = this.data.releaseData.itemId
-    }
+      let url = '/ad/adAdd'
+      if (this.data.releaseData) {
+        url = '/ad/updateMine'
+        obj.itemId = this.data.releaseData.itemId
+      }
 
-    adverModel.adAdd(url, obj).then(res => {
-      console.log(res)
-      wx.navigateTo({
-        url: '../record/record',
+      adverModel.adAdd(url, obj).then(res => {
+        console.log(res)
+        wx.hideLoading();
+        wx.navigateTo({
+          url: '../record/record',
+        })
       })
     })
   },

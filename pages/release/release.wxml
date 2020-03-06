@@ -55,11 +55,6 @@ title="{{navTitle}}"
             <input name="adWide" value="{{adWide}}" placeholder="例: 50cm、1.8m" />
           </view>
         </view>
-        <!-- <view class="input-item flex-r">
-          <view class="label">媒体位置</view>
-          <input name="addressArea" value="{{region}}" placeholder="选择省市区" disabled="true"/>
-          <view class="iconfont icon-ditu-dibiao" catchtap="getLocation"></view>
-        </view> -->
         <view class="input-item flex-r">
           <view class="label">详细地址</view>
           <input name="adAddress" value="{{adAddress}}" placeholder="详细地址" />
@@ -80,7 +75,7 @@ title="{{navTitle}}"
         </view>
         <view class="input-item flex-r no-border">
           <view class="label">媒体照片</view>
-          <view class="tips">(最多上传3张)</view>
+          <view class="tips">(最多可上传3张)</view>
         </view>
         <view class="img-box">
           <view class="img-item-box" wx:for="{{imagePathArr}}" wx:key="index" >
@@ -88,6 +83,19 @@ title="{{navTitle}}"
             <view class="cancel-icon" catchtap="cancelImgItem" data-index="{{index}}">×</view>
           </view>
           <view class="add-img" wx:if="{{imagePathArr.length!=3}}" catchtap="shagnchuangImg">
+            <text class="iconfont icon-jia"></text>
+          </view>
+        </view>
+        <view class="input-item flex-r no-border">
+          <view class="label">视频上传</view>
+          <view class="tips">(视频最多可上传1个，大小不能超过20M)</view>
+        </view>
+        <view class="img-box">
+          <view class="img-item-box" wx:if="{{src != ''}}">
+            <video src="{{src}}" object-fit="cover" class="video"></video>
+            <view class="cancel-icon" catchtap="cancelVideoItem" data-index="{{index}}">×</view>
+          </view>
+          <view class="add-img" wx:if="{{imagePathArr.length!=3}}" catchtap="shagnchuangVideo">
             <text class="iconfont icon-jia"></text>
           </view>
         </view>
